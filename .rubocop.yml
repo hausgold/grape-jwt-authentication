@@ -1,0 +1,42 @@
+require: rubocop-rspec
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: true
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - db/schema.rb
+    - bin/**/*
+    - db/migrate/**/*
+    - vendor/cache/**/*
+    - vendor/bundle/**/*
+    - build/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    # Because of the Grape DSL
+    - lib/**/*.rb
+    - Rakefile
+    - spec/**/*.rb
+    - '**/*.rake'
+
+# Document all the things.
+Style/DocumentationMethod:
+  Enabled: true
+  RequireForNonPublicMethods: true
+
+# It's a deliberate idiom in RSpec.
+# See: https://github.com/bbatsov/rubocop/issues/4222
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+# Because +expect_any_instance_of().to have_received()+ is not
+# supported with the +with(hash_including)+ matchers
+RSpec/MessageSpies:
+  EnforcedStyle: receive
