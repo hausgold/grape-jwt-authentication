@@ -1,6 +1,9 @@
 ![grape-jwt-authentication](doc/assets/project.png)
 
 [![Build Status](https://api.travis-ci.org/hausgold/grape-jwt-authentication.svg)](https://travis-ci.org/hausgold/grape-jwt-authentication)
+[![Gem Version](https://badge.fury.io/rb/grape-jwt-authentication.svg)](https://badge.fury.io/rb/grape-jwt-authentication)
+[![Maintainability](https://api.codeclimate.com/v1/badges/446f3eff18bebff9c174/maintainability)](https://codeclimate.com/github/hausgold/grape-jwt-authentication/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/446f3eff18bebff9c174/test_coverage)](https://codeclimate.com/github/hausgold/grape-jwt-authentication/test_coverage)
 
 This gem is dedicated to easily integrate a JWT authentication to your
 [Grape](https://github.com/ruby-grape/grape) API. The real authentication
