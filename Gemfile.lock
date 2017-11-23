@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-jwt-authentication (0.1.0)
+    grape-jwt-authentication (1.0.0)
       activesupport (>= 3.2.0)
       grape (~> 1.0)
       httparty
