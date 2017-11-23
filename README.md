@@ -90,26 +90,26 @@ token.
 ```ruby
 Grape::Jwt::Authentication.configure do |conf|
   conf.authenticator = proc do |token|
-    # Verify the token the way you like.
+    # Verify the token the way you like. (true, false)
   end
 end
 ```
 
 #### Malformed token handling
 
-Whenever the given value on the +Authorization+ header is not a valid Bearer
+Whenever the given value on the `Authorization` header is not a valid Bearer
 authentication scheme or the token itself is not a valid JSON Web Token, this
 user defined function will be called. You can add custom handling of this
-situations, like responding different HTTP status code, or bodies. By default
-the Rack stack will be interrupted and a response with the 400 Bad Request
-status code will be send to the client. The raw token (value of the
-`Authorization` header) and the Rack app will be injected to your function for
-maximum flexibility.
+situations, like responding a different HTTP status code, or a more detailed
+response body. By default the Rack stack will be interrupted and a response
+with the `400 Bad Request` status code will be send to the client. The raw
+token (value of the `Authorization` header) and the Rack app will be injected
+to your function for maximum flexibility.
 
 ```ruby
 Grape::Jwt::Authentication.configure do |conf|
   conf.malformed_auth_handler = proc do |raw_token, app|
-    # Do your own error handling.
+    # Do your own error handling. (Rack interface)
   end
 end
 ```
@@ -117,24 +117,19 @@ end
 #### Failed authentication handling
 
 When the client sends a corrected formatted JSON Web Token with the Bearer
-authentication scheme within the +Authorization+ header and your authenticator
+authentication scheme within the `Authorization` header and your authenticator
 fails for some reason (token claims, wrong audience, bad subject, expired
 token, wrong cryptographic signing etc), this function is called to handle the
 bad authentication. By default the Rack stack will be interrupted and a
-response with the 401 Unauthorized status code will be send to the client. You
-can customize this the way you like and send different error codes, or handle
-the error completely different. The parsed JSON Web Token and the Rack app will
-be injected to your function to allow any customizeWhenever you want to use the
-`RsaPublicKey` class you configure the default URL on the singleton instance,
-or use the gem configure method and set it up accordingly.  We allow the fetch
-of the public key from a remote server (HTTP/HTTPS) or from a local file which
-is accessible by the ruby process.  Specify the URL or the local path here. Not
-specified by default.
+response with the `401 Unauthorized` status code will be send to the client.
+You can customize this the way you like and send different error codes, or
+handle the error completely different. The parsed JSON Web Token and the Rack
+app will be injected to your function to allow any customized error handling.
 
 ```ruby
 Grape::Jwt::Authentication.configure do |conf|
   conf.failed_auth_handler = proc do |token, app|
-    # Do your own error handling.
+    # Do your own error handling. (Rack interface)
   end
 end
 ```
@@ -185,9 +180,9 @@ end
 
 ##### RSA public key caching
 
-You can preconfigure the `RsaPublickey` class to enable/disable caching. For a
+You can configure the `RsaPublickey` class to enable/disable caching. For a
 remote public key location it is handy to cache the result for some time to
-keep the traffic low to this resource server.  For a local file you can skip
+keep the traffic low to the resource server.  For a local file you can skip
 this. Disabled by default.
 
 ```ruby
@@ -198,8 +193,8 @@ end
 
 ##### RSA public key cache expiration
 
-When you make use of the caching of the `RsaPublicKey` class you can fine tune
-the expiration time of this cache. The RSA public key from your identity
+When you make use of the cache of the `RsaPublicKey` class you can fine tune
+the expiration time. The RSA public key from your identity
 provider should not change this frequent, so a cache for at least one hour is
 fine. You should not set it lower than one minute. Keep this setting in mind
 when you change keys. Your infrastructure could be inoperable for this
@@ -217,9 +212,9 @@ We ship a little wrapper class to ease the validation of JSON Web Tokens with
 the help of the great [ruby-jwt](https://github.com/jwt/ruby-jwt) library. This
 wrapper class provides some helpers like `#access_token?`, `#refresh_token?` or
 `#expires_at` which returns a ActiveSupport time-zoned representation of the
-token timestamp. It is initially opinionated to RSA verification, but can be
-tuned to verify HMAC or ECDSA signed tokens. It integrated well with the
-`RsaPublicKey` fetcher class. (by default)
+token expiration timestamp. It is initially opinionated to RSA verification,
+but can be tuned to verify HMAC or ECDSA signed tokens. It integrated well with
+the `RsaPublicKey` fetcher class. (by default)
 
 **Heads up!** You can skip this if you have your own JWT verification mechanism.
 
@@ -246,7 +241,8 @@ shared initializer place.
 
 ##### Issuer verification
 
-The JSON Web Token isser which should be used for verification.
+The JSON Web Token issuer which should be used for verification. When `nil` we
+also turn off the verification by default. (See the default JWT options)
 
 ```ruby
 Grape::Jwt::Authentication.configure do |conf|
@@ -257,7 +253,8 @@ end
 ##### Beholder (audience) verification
 
 The resource server (namely the one which configures this right now)
-which MUST be present on the JSON Web Token audience claim.
+which MUST be present on the JSON Web Token audience claim. When `nil` we
+also turn off the verification by default. (See the default JWT options)
 
 ```ruby
 Grape::Jwt::Authentication.configure do |conf|
@@ -271,7 +268,7 @@ You can configure a different JSON Web Token verification option hash if your
 algorithm differs or you want some extra/different options.  Just watch out
 that you have to pass a proc to this configuration property. On the
 `Grape::Jwt::Authentication::Jwt` class it has to be a simple hash. The default
-is here the RS256 algorithm with enabled expiration check, and issuer+audience
+is here the `RS256` algorithm with enabled expiration check, and issuer+audience
 check when the `jwt_issuer` / `jwt_beholder` are configured accordingly.
 
 ```ruby
@@ -303,8 +300,8 @@ end
 ### Per-API configuration
 
 Imagine the migration of your API (say v2) and also the JSON Web Token payload
-changes in a way you need to handle. Maybe you want to be stricter on version 2
-than on your old version 1. For this you can make use of the local
+changes in a way you need to handle. Maybe you want to be more strict on
+version 2 than on your old version 1. For this you can make use of the local
 configuration of the JWT authenticator, on your specific Grape API declaration.
 Here comes an example usage:
 
@@ -327,8 +324,9 @@ end
 
 ### Full RSA256 example
 
-Here comes a full example of the opinionated RSA256 usage with a remote RSA
-public key location, with enabled caching and full token payload verification.
+Here comes a full example of the opinionated `RSA256` algorithm usage with a
+remote RSA public key location, enabled caching and a full token payload
+verification.
 
 ```ruby
 # On an initializer ..
