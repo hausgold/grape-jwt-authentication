@@ -8,6 +8,17 @@ end
 
 require 'bundler/setup'
 require 'grape/jwt/authentication'
+require 'timecop'
+require 'pp'
+
+# Setup a default timezone for the tests
+Time.zone = 'Europe/Berlin'
+
+# The following line is provided for convenience purposes. It has the downside
+# of increasing the boot-up time by auto-requiring all files in the support
+# directory. Alternatively, in the individual `*_spec.rb` files, manually
+# require only the support files necessary.
+Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

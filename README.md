@@ -32,7 +32,32 @@ $ gem install grape-jwt-authentication
 
 ## Usage
 
-TODO: Write usage instructions here
+### Grape API
+
+You can enable the JWT authentication on any Grape API you like. This includes
+specific endpoints or a whole API. Just include the
+`Grape::Jwt::Authentication` module and configure it the way you like.
+
+```ruby
+module UserApi
+  class ApiV1 < Grape::API
+    version 'v1', using: :path
+
+    # All your fancy Grape API stuff [..]
+
+    # Enable JWT authentication on this API
+    include Grape::Jwt::Authentication
+  end
+end
+```
+
+### Configuration
+
+#### Authenticator
+
+#### Malformed token handling
+
+#### Failed authentication handling
 
 ## Development
 

@@ -22,6 +22,7 @@ Metrics/BlockLength:
     # Because of the Grape DSL
     - lib/**/*.rb
     - Rakefile
+    - grape-jwt-authentication.gemspec
     - spec/**/*.rb
     - '**/*.rake'
 

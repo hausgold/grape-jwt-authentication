@@ -20,13 +20,51 @@ module Grape
 
         # Initialize a new Rack middleware for Bearer token
         # processing.
-        def initialize(app)
+        #
+        # @param app [Proc] The regular Rack application
+        # @param options [Hash] A global-overwritting configuration hash
+        def initialize(app, options = {})
           @app = app
+          @options = options
+        end
 
-          @conf = Grape::Jwt::Authentication.configuration
-          @malformed_handler = @conf.malformed_auth_handler
-          @failed_handler = @conf.failed_auth_handler
-          @block = @conf.authenticator
+        # A shared configuration lookup helper which selects the requested
+        # entry from the local or global configuration object.  The local
+        # configuration takes presedence over the global one.
+        #
+        # @param key [Symbol] The local config key
+        # @param global_key [Symbol] The global config key
+        # @return [Mixed] The configuration value
+        def config(key, global_key)
+          block = @options[key]
+          unless block
+            global_conf = Grape::Jwt::Authentication.configuration
+            return global_conf.send(global_key)
+          end
+          block
+        end
+
+        # Get the local or global defined authenticator for the JWT handler.
+        #
+        # @return [Proc] The authenticator block
+        def authenticator
+          config(:proc, :authenticator)
+        end
+
+        # Get the local or global defined malformed authentication handler for
+        # the JWT handler.
+        #
+        # @return [Proc] The malformed authorization handler block
+        def malformed_handler
+          config(:malformed, :malformed_auth_handler)
+        end
+
+        # Get the local or global defined failed authentication handler for the
+        # JWT handler.
+        #
+        # @return [Proc] The failed authentication handler block
+        def failed_handler
+          config(:failed, :failed_auth_handler)
         end
 
         # Validate the Bearer authentication scheme on the given
@@ -61,7 +99,7 @@ module Grape
           # a positive result to allow the request to be further
           # processed, or a negative result to stop processing.
           token = parse_token(env['HTTP_AUTHORIZATION'])
-          raise AuthenticationError unless @block.call(token)
+          raise AuthenticationError unless authenticator.call(token)
 
           # Looks like we are on a good path and the given token was
           # valid on all checks. So we continue the regular
@@ -69,10 +107,10 @@ module Grape
           @app.call(env)
         rescue MalformedHeaderError
           # Call the user defined malformed authentication handler.
-          @malformed_handler.call
+          malformed_handler.call(env['HTTP_AUTHORIZATION'], @app)
         rescue AuthenticationError
           # Call the user defined failed authentication handler.
-          @failed_handler.call
+          failed_handler.call(token, @app)
         end
       end
     end
