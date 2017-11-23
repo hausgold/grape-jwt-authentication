@@ -24,6 +24,14 @@ module Grape
           @cache = ActiveSupport::Cache::MemoryStore.new
         end
 
+        # Just a simple shortcut class method to access the fetch method
+        # without specifying the singleton instance.
+        #
+        # @return [OpenSSL::PKey::RSA]
+        def self.fetch
+          instance.fetch
+        end
+
         # Configure the single instance. This is just a wrapper (like tap)
         # to the instance itself.
         def configure

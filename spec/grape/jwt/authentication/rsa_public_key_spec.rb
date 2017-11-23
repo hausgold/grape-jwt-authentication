@@ -133,4 +133,13 @@ RSpec.describe Grape::Jwt::Authentication::RsaPublicKey do
       end
     end
   end
+
+  describe '.fetch' do
+    it 'just shortcuts the instance method' do
+      Grape::Jwt::Authentication.configure do |conf|
+        conf.rsa_public_key_url = file_fixture('rsa1.pub').path
+      end
+      expect(described_class.fetch).to be_a(OpenSSL::PKey::RSA)
+    end
+  end
 end
