@@ -88,7 +88,7 @@ module Grape
           # Unfortunately Grape's middleware stack orders the error
           # handling higher than the formatter. So when a error is
           # raised, the Rack env was not yet analysed and the content
-          # type not negotiated. This would result in allways-JSON
+          # type not negotiated. This would result in always-JSON
           # responses on authentication errors. We want to be smarter
           # here and respond in the requested format on authentication
           # errors, that why we invoke the formatter middleware here.
