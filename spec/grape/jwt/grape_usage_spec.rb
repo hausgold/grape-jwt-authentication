@@ -31,20 +31,39 @@ module TestGlobalConfiguration
   end
 end
 
-module TestContentType
+module TestContentTypeWithPathVersioning
   class API < Grape::API
     version 'v1', using: :path
 
+    # formatter :jsonapi, ->() {}
     content_type :jsonapi, "application/vnd.api+json"
     default_format :jsonapi
     format :jsonapi
 
 
     include Grape::Jwt::Authentication
-    auth :jwt, malformed: $custom_malformed_auth_handler,
-         failed: $custom_failed_auth_handler,
-         &$custom_authenticator
+    auth :jwt
 
+    resource :test do
+      desc 'A simple GET endpoint which is JWT protected.'
+      post do
+        { test: true }
+      end
+    end
+  end
+end
+
+module TestContentTypeWithoutVersioning
+  class API < Grape::API
+
+    # formatter :jsonapi, ->() {}
+    content_type :jsonapi, "application/vnd.api+json"
+    default_format :jsonapi
+    format :jsonapi
+
+
+    include Grape::Jwt::Authentication
+    auth :jwt
 
     resource :test do
       desc 'A simple GET endpoint which is JWT protected.'
@@ -102,6 +121,17 @@ RSpec.shared_examples 'api' do
   end
 end
 
+RSpec.shared_examples 'post with custom content type' do
+  it 'succeeds on POST' do
+    header 'Authorization', "Bearer #{valid_token}"
+    header 'CONTENT_TYPE', 'application/vnd.api+json'
+    header 'HTTP_ACCEPT', 'application/vnd.api+json'
+
+    post '/v1/test', {}
+    expect(last_response.body).to be_eql('{"test":true}')
+  end
+end
+
 # rubocop:disable RSpec/DescribeClass because we test not a specific class
 RSpec.describe 'Grape usage' do
   let(:valid_token) { 'eyJ0eXAiOiJKV1QifQ.eyJ0ZXN0Ijp0cnVlfQ.' }
@@ -124,26 +154,32 @@ RSpec.describe 'Grape usage' do
     end
 
     include_examples 'api'
+
+    context 'with a custom content type' do
+      context 'with path versioning' do
+        let(:app) { TestContentTypeWithPathVersioning::API }
+
+        include_examples 'post with custom content type'
+      end
+
+      context 'without versioning' do
+        let(:app) { TestContentTypeWithoutVersioning::API }
+
+        it 'succeeds on POST' do
+          header 'Authorization', "Bearer #{valid_token}"
+          header 'CONTENT_TYPE', 'application/vnd.api+json'
+          header 'HTTP_ACCEPT', 'application/vnd.api+json'
+
+          post '/test', {}
+          expect(last_response.body).to be_eql('{"test":true}')
+        end
+      end
+    end
   end
 
   context 'with API-local configuration' do
     let(:app) { TestLocalConfiguration::API }
 
     include_examples 'api'
-  end
-
-  context 'with a custom content type' do
-    let(:app) { TestContentType::API }
-
-    it 'succeeds on POST' do
-      header 'Authorization', "Bearer #{valid_token}"
-      header 'CONTENT_TYPE', 'application/vnd.api+json'
-      header 'HTTP_ACCEPT', 'application/vnd.api+json'
-
-      post '/v1/test',
-           params: {},
-           as: :json
-      expect(last_response.body).to be_eql('{"test":true}')
-    end
   end
 end
