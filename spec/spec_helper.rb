@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-
-SimpleCov.start do
-  add_filter 'spec'
-end
+SimpleCov.command_name 'specs'
 
 require 'bundler/setup'
 require 'grape/jwt/authentication'
