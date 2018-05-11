@@ -79,6 +79,12 @@ module Grape
           token
         end
 
+        def app_options
+          return @app.options if @app.instance_of?(Grape::Middleware::Formatter)
+          return @app.app.options if @app.respond_to?(:app) &&  @app.app&.instance_of?(Grape::Middleware::Formatter)
+          {}
+        end
+
         # Perform the authentication logic on the Rack compatible
         # interface.
         #
@@ -88,11 +94,11 @@ module Grape
           # Unfortunately Grape's middleware stack orders the error
           # handling higher than the formatter. So when a error is
           # raised, the Rack env was not yet analysed and the content
-          # type not negotiated. This would result in allways-JSON
+          # type not negotiated. This would result in always-JSON
           # responses on authentication errors. We want to be smarter
           # here and respond in the requested format on authentication
           # errors, that why we invoke the formatter middleware here.
-          Grape::Middleware::Formatter.new(->(_) {}).call(env)
+          Grape::Middleware::Formatter.new(->(_) {}, app_options).call(env)
 
           # Parse the JWT token and give it to the user defined block
           # for futher verification. The user given block MUST return
