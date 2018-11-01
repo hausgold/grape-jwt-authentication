@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-jwt-authentication (1.0.1)
+    grape-jwt-authentication (1.1.0)
       activesupport (>= 3.2.0)
       grape (~> 1.0)
       httparty
@@ -11,9 +11,9 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.1.4)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (~> 0.7)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.5.2)
@@ -33,7 +33,7 @@ GEM
     diff-lcs (1.3)
     docile (1.1.5)
     equalizer (0.0.11)
-    grape (1.0.1)
+    grape (1.1.0)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
@@ -41,16 +41,16 @@ GEM
       rack-accept
       virtus (>= 1.0.0)
     hashdiff (0.3.7)
-    httparty (0.15.6)
+    httparty (0.16.2)
       multi_xml (>= 0.5.2)
-    i18n (0.9.1)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.1.0)
     jwt (2.1.0)
-    minitest (5.10.3)
+    minitest (5.11.3)
     multi_xml (0.6.0)
-    mustermann (1.0.1)
+    mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
     public_suffix (3.0.1)
@@ -60,7 +60,7 @@ GEM
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rake (10.5.0)
-    recursive-open-struct (1.0.5)
+    recursive-open-struct (1.1.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -82,7 +82,7 @@ GEM
     simplecov-html (0.10.2)
     thread_safe (0.3.6)
     timecop (0.9.1)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     vcr (3.0.3)
     virtus (1.0.5)
@@ -111,4 +111,4 @@ DEPENDENCIES
   webmock (~> 3.1)
 
 BUNDLED WITH
-   1.16.0
+   1.16.5
