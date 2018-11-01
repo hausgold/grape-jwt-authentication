@@ -58,3 +58,4 @@ RSpec.describe 'Rack usage' do
     expect(last_response.body).to match(/Lobstericious!/)
   end
 end
+# rubocop:enable RSpec/DescribeClass

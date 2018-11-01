@@ -14,6 +14,7 @@ flexible on the JWT verification level.
 - [Installation](#installation)
 - [Usage](#usage)
   - [Grape API](#grape-api)
+    - [Helpers](#helpers)
   - [Configuration](#configuration)
     - [Authenticator](#authenticator)
     - [Malformed token handling](#malformed-token-handling)
@@ -65,6 +66,42 @@ module UserApi
   class ApiV1 < Grape::API
     # All your fancy Grape API stuff [..]
     version 'v1', using: :path
+
+    # Enable JWT authentication on this API
+    include Grape::Jwt::Authentication
+    auth :jwt
+  end
+end
+```
+
+#### Helpers
+
+The inclusion of the `Grape::Jwt::Authentication` inserts some helpers to
+access the parsed and original JWT. This can be handy when you need to work
+with the JWT payload or perform some extra calculations with the expiration
+date of it.  The following example demonstrated the usage of the helpers.
+
+```ruby
+module UserApi
+  class ApiV1 < Grape::API
+    # All your fancy Grape API stuff [..]
+    version 'v1', using: :path
+
+    resource :payload do
+      desc 'A JWT payload echo service.'
+      get do
+        # The parsed JWT which has an accessible payload (RecursiveOpenStruct)
+        { payload: request_jwt.payload.to_h }
+      end
+    end
+
+    resource :token do
+      desc 'A JWT echo service.'
+      get do
+        # The original JWT parsed from the HTTP authorization header
+        { token: original_request_jwt }
+      end
+    end
 
     # Enable JWT authentication on this API
     include Grape::Jwt::Authentication
@@ -377,8 +414,8 @@ end
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
-`rake spec` to run the tests. You can also run `bin/console` for an interactive
-prompt that will allow you to experiment.
+`bundle exec rake spec` to run the tests. You can also run `bin/console` for an
+interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To
 release a new version, update the version number in `version.rb`, and then run

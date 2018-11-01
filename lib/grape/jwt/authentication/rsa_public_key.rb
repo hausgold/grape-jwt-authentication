@@ -61,6 +61,7 @@ module Grape
         # @return [String] The encoded public key
         def fetch_encoded_key
           raise ArgumentError, 'No URL for RsaPublicKey configured' unless url
+
           if remote?
             HTTParty.get(url).body
           else

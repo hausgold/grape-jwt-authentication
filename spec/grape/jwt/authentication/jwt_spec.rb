@@ -111,6 +111,7 @@ RSpec.describe Grape::Jwt::Authentication::Jwt do
 
   describe '#expires_at' do
     before { Timecop.freeze }
+
     after { Timecop.return }
 
     it 'exports the expiration date when set' do
