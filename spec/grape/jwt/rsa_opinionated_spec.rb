@@ -105,3 +105,4 @@ RSpec.describe 'RSA optinionated usage' do
     expect(last_response.body).to be_eql('{"test":true}')
   end
 end
+# rubocop:enable RSpec/DescribeClass

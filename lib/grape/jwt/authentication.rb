@@ -58,6 +58,27 @@ module Grape
         Grape::Middleware::Auth::Strategies.add(:jwt,
                                                 JwtHandler,
                                                 ->(opts) { [opts] })
+
+        helpers do
+          # Get the parsed JWT from the authorization header of the current
+          # request. You could use it to access the payload or the expiration
+          # date, etc inside your API definition. When the authenticator stated
+          # that the validation failed, then the parsed token is +nil+.
+          #
+          # @return [Grape::Jwt::Authentication::Jwt, nil] the parsed token
+          def request_jwt
+            env['grape_jwt_auth.parsed_token']
+          end
+
+          # Get the original JWT from the authorization header of the current
+          # request, without further changes. You could use it to display a
+          # custom error or to parse it differently.
+          #
+          # @return [String] the JWT from the authorization header
+          def original_request_jwt
+            env['grape_jwt_auth.original_token']
+          end
+        end
       end
     end
   end

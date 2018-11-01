@@ -15,8 +15,12 @@ module Grape
         # A internal exception handling for malformed headers.
         class MalformedHeaderError < StandardError; end
 
+        # A generic JWT part, the full token contains three parts
+        # separated by a period.
+        JWT_PART_REGEX = /([a-zA-Z0-9\-_]+)?/.freeze
+
         # A common JWT validation regex which meets the RFC specs.
-        JWT_REGEX = /^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$/
+        JWT_REGEX = Regexp.new("^#{([JWT_PART_REGEX] * 3).join('\.')}$").freeze
 
         # Initialize a new Rack middleware for Bearer token
         # processing.
@@ -76,12 +80,30 @@ module Grape
         def parse_token(header)
           token = header.to_s.scan(/^Bearer (.*)/).flatten.first
           raise MalformedHeaderError unless JWT_REGEX =~ token
+
           token
+        end
+
+        # Inject the token to the environment as a parsed version. This allows
+        # further usage like extracting the subject from the payload when the
+        # verification was valid.
+        #
+        # @param env [Hash{String => Mixed}] the Rack environment
+        # @param token [String] the token parsed from the HTTP header
+        def inject_token_into_env(env, token)
+          env['grape_jwt_auth.parsed_token'] = Jwt.new(token)
+        rescue *Jwt::RESCUE_JWT_EXCEPTIONS
+          env['grape_jwt_auth.parsed_token'] = nil
+        ensure
+          env['grape_jwt_auth.original_token'] = token
         end
 
         # Perform the authentication logic on the Rack compatible
         # interface.
         #
+        # @param env [Hash{String => Mixed}] the Rack environment
+        #
+        # rubocop:disable Metrics/AbcSize because thats the auth handling core
         # :reek:TooManyStatements because reek counts exception
         #                         handling as statements
         def call(env)
@@ -94,11 +116,16 @@ module Grape
           # errors, that why we invoke the formatter middleware here.
           Grape::Middleware::Formatter.new(->(_) {}).call(env)
 
-          # Parse the JWT token and give it to the user defined block
+          # Parse the JWT token from the request headers.
+          token = parse_token(env['HTTP_AUTHORIZATION'])
+
+          # Inject the parsed token to the Rack environment.
+          inject_token_into_env(env, token)
+
+          # Give the parsed token to the user defined block
           # for futher verification. The user given block MUST return
           # a positive result to allow the request to be further
           # processed, or a negative result to stop processing.
-          token = parse_token(env['HTTP_AUTHORIZATION'])
           raise AuthenticationError unless authenticator.call(token)
 
           # Looks like we are on a good path and the given token was
@@ -112,6 +139,7 @@ module Grape
           # Call the user defined failed authentication handler.
           failed_handler.call(token, @app)
         end
+        # rubocop:enable Metrics/AbcSize
       end
     end
   end

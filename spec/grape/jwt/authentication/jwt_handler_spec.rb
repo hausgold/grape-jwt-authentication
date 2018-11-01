@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Grape::Jwt::Authentication::JwtHandler do
+  let(:jwt) { JWT.encode({ test: true }, nil, 'none') }
   let(:conf) { Grape::Jwt::Authentication.configuration }
   let(:true_proc) { proc { true } }
   let(:false_proc) { proc { false } }
@@ -33,20 +34,55 @@ RSpec.describe Grape::Jwt::Authentication::JwtHandler do
     let(:env) { { 'HTTP_AUTHORIZATION' => 'Bearer a.b.c' } }
 
     context 'when authenticator fails' do
-      it 'calls the failed authentication handler' do
+      before do
         conf.authenticator = proc { false }
         conf.failed_auth_handler = false_proc
+      end
+
+      it 'calls the failed authentication handler' do
         expect(false_proc).to receive(:call)
         handler.call(env)
+      end
+
+      it 'injects the original token into the rack env' do
+        expect { handler.call(env) }.to \
+          change { env['grape_jwt_auth.original_token'] }.from(nil).to('a.b.c')
+      end
+
+      it 'injects the parsed token into the rack env' do
+        expect { handler.call(env) }.to \
+          change { env.key? 'grape_jwt_auth.parsed_token' }.from(false).to(true)
       end
     end
 
     context 'when authenticator succeeds' do
-      it 'calls the failed authentication handler' do
+      let(:env) { { 'HTTP_AUTHORIZATION' => "Bearer #{jwt}" } }
+
+      before do
         conf.authenticator = true_proc
         conf.failed_auth_handler = false_proc
+      end
+
+      it 'calls the failed authentication handler' do
         expect(false_proc).not_to receive(:call)
         handler.call(env)
+      end
+
+      it 'injects the original token into the rack env' do
+        expect { handler.call(env) }.to \
+          change { env['grape_jwt_auth.original_token'] }.from(nil).to(jwt)
+      end
+
+      it 'injects the parsed token into the rack env' do
+        expect { handler.call(env) }.to \
+          change { env['grape_jwt_auth.parsed_token'] } \
+          .from(nil).to(Grape::Jwt::Authentication::Jwt)
+      end
+
+      it 'inject the parsed token which makes the payload accessible' do
+        handler.call(env)
+        expect(env['grape_jwt_auth.parsed_token'].payload).to \
+          be_eql(RecursiveOpenStruct.new(test: true))
       end
     end
   end

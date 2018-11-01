@@ -63,6 +63,7 @@ module Grape
         def expires_at
           exp = payload.exp
           return nil unless exp
+
           Time.zone.at(exp)
         end
 

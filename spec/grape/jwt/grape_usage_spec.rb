@@ -26,6 +26,20 @@ module TestGlobalConfiguration
       end
     end
 
+    resource :payload do
+      desc 'A JWT payload echo service.'
+      get do
+        { payload: request_jwt.payload.to_h }
+      end
+    end
+
+    resource :token do
+      desc 'A JWT echo service.'
+      get do
+        { token: original_request_jwt }
+      end
+    end
+
     include Grape::Jwt::Authentication
     auth :jwt
   end
@@ -40,6 +54,20 @@ module TestLocalConfiguration
       desc 'A simple GET endpoint which is JWT protected.'
       get do
         { test: true }
+      end
+    end
+
+    resource :payload do
+      desc 'A JWT payload echo service.'
+      get do
+        { payload: request_jwt.payload.to_h }
+      end
+    end
+
+    resource :token do
+      desc 'A JWT echo service.'
+      get do
+        { token: original_request_jwt }
       end
     end
 
@@ -80,6 +108,24 @@ RSpec.shared_examples 'api' do
     get '/v1/test'
     expect(last_response.body).to be_eql('{"test":true}')
   end
+
+  describe 'helpers' do
+    describe '#original_request_jwt' do
+      it 'echos the JWT' do
+        header 'Authorization', "Bearer #{valid_token}"
+        get '/v1/token'
+        expect(last_response.body).to be_eql(%({"token":"#{valid_token}"}))
+      end
+    end
+
+    describe '#request_jwt' do
+      it 'echos the JWT payload' do
+        header 'Authorization', "Bearer #{valid_token}"
+        get '/v1/payload'
+        expect(last_response.body).to be_eql(%({"payload":{"test":true}}))
+      end
+    end
+  end
 end
 
 # rubocop:disable RSpec/DescribeClass because we test not a specific class
@@ -108,3 +154,5 @@ RSpec.describe 'Grape usage' do
     include_examples 'api'
   end
 end
+# rubocop:enable RSpec/DescribeClass
+# rubocop:enable Style/GlobalVars
