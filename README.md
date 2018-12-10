@@ -1,4 +1,4 @@
-![grape-jwt-authentication](doc/assets/project.png)
+![grape-jwt-authentication](doc/assets/project.svg)
 
 [![Build Status](https://travis-ci.org/hausgold/grape-jwt-authentication.svg?branch=master)](https://travis-ci.org/hausgold/grape-jwt-authentication)
 [![Gem Version](https://badge.fury.io/rb/grape-jwt-authentication.svg)](https://badge.fury.io/rb/grape-jwt-authentication)
