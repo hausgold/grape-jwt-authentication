@@ -99,7 +99,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
+  bundler (>= 1.16, < 3)
   grape-jwt-authentication!
   rack (~> 2.0)
   rack-test (~> 0.8.2)
@@ -111,4 +111,4 @@ DEPENDENCIES
   webmock (~> 3.1)
 
 BUNDLED WITH
-   1.16.5
+   1.17.3
