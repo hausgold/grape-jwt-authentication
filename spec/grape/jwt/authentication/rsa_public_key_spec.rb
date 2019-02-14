@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 RSpec.describe Grape::Jwt::Authentication::RsaPublicKey do
+  # Use this method to swallow any raised exceptions. Just wrap any code you
+  # want with this method.  This is useful in situations were you test some
+  # behaviour in the middle of a raising call.
+  #
+  # @yield
+  def ignore_exceptions
+    yield
+  rescue StandardError
+    nil
+  end
+
   let(:instance) { described_class.instance }
 
   before do
@@ -100,6 +111,13 @@ RSpec.describe Grape::Jwt::Authentication::RsaPublicKey do
         expect(instance.fetch_encoded_key).to \
           be_eql(file_fixture('rsa1.pub').read)
       end
+
+      it 'raises a FetchError when not successful', :vcr do
+        instance.url = 'https://httpstat.us/502'
+        expect { instance.fetch_encoded_key }.to \
+          raise_error(Grape::Jwt::Authentication::RsaPublicKey::FetchError,
+                      /502 Bad Gateway/)
+      end
     end
 
     context 'with local URL' do
@@ -118,10 +136,20 @@ RSpec.describe Grape::Jwt::Authentication::RsaPublicKey do
     let(:configure_pub2) { instance.url = pub2.path }
 
     context 'with cache' do
-      it 'cache the key' do
+      before do
         instance.caching = true
+        instance.cache.clear
+      end
+
+      it 'cache the key' do
         configure_pub1
         expect { configure_pub2 }.not_to change { instance.fetch.to_s }
+      end
+
+      it 'caches nothing on issues', :vcr do
+        instance.url = 'https://httpstat.us/502'
+        expect { ignore_exceptions { instance.fetch } }.not_to \
+          change { instance.cache.fetch('encoded_key') }.from(nil)
       end
     end
 
