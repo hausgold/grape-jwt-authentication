@@ -12,6 +12,9 @@ module Grape
       # server or a local file. This is naturally only useful if you care about
       # JSON Web Token which are signed by the RSA algorithm.
       class RsaPublicKey
+        # A internal exception handling for failed fetch attempts.
+        class FetchError < StandardError; end
+
         include Singleton
 
         # Setup all the getters and setters.
@@ -63,7 +66,9 @@ module Grape
           raise ArgumentError, 'No URL for RsaPublicKey configured' unless url
 
           if remote?
-            HTTParty.get(url).body
+            res = HTTParty.get(url)
+            raise FetchError, res.inspect unless (200..299).include? res.code
+            res.body
           else
             File.read(url)
           end
