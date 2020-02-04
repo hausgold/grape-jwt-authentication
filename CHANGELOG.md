@@ -1,3 +1,7 @@
+### 1.3.0
+
+* Dropped support for EOL Ruby 2.3 (in addition to Grape)
+
 ### 1.2.0
 
 * Check the remote response on public key fetching (#3)
