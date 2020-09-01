@@ -1,3 +1,8 @@
+### 1.4.0
+
+* Extracted the JWT verification functionality into its own gem
+  ([keyless](https://github.com/hausgold/keyless))
+
 ### 1.3.0
 
 * Dropped support for EOL Ruby 2.3 (in addition to Grape)

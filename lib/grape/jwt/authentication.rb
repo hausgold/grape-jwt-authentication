@@ -10,12 +10,11 @@ require 'active_support/time_with_zone'
 
 require 'jwt'
 
+require 'keyless'
 require 'grape'
 require 'grape/jwt/authentication/version'
 require 'grape/jwt/authentication/configuration'
 require 'grape/jwt/authentication/jwt_handler'
-require 'grape/jwt/authentication/jwt'
-require 'grape/jwt/authentication/rsa_public_key'
 
 module Grape
   module Jwt

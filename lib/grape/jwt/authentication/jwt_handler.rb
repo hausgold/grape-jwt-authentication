@@ -91,8 +91,8 @@ module Grape
         # @param env [Hash{String => Mixed}] the Rack environment
         # @param token [String] the token parsed from the HTTP header
         def inject_token_into_env(env, token)
-          env['grape_jwt_auth.parsed_token'] = Jwt.new(token)
-        rescue *Jwt::RESCUE_JWT_EXCEPTIONS
+          env['grape_jwt_auth.parsed_token'] = Keyless::Jwt.new(token)
+        rescue *Keyless::Jwt::RESCUE_JWT_EXCEPTIONS
           env['grape_jwt_auth.parsed_token'] = nil
         ensure
           env['grape_jwt_auth.original_token'] = token

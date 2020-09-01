@@ -76,7 +76,7 @@ RSpec.describe Grape::Jwt::Authentication::JwtHandler do
       it 'injects the parsed token into the rack env' do
         expect { handler.call(env) }.to \
           change { env['grape_jwt_auth.parsed_token'] } \
-          .from(nil).to(Grape::Jwt::Authentication::Jwt)
+          .from(nil).to(Keyless::Jwt)
       end
 
       it 'inject the parsed token which makes the payload accessible' do
