@@ -118,11 +118,10 @@ module Grape
         # This way you can pass your HMAC secret or your ECDSA public key to
         # the JSON Web Token validation method. Here you need to pass a proc,
         # on the {Grape::Jwt::Authentication::Jwt} class it has to be a scalar
-        # value. By default we use the
-        # {Grape::Jwt::Authentication::RsaPublicKey} class to retrieve the RSA
-        # public key.
+        # value. By default we use the {Keyless::RsaPublicKey} class to
+        # retrieve the RSA public key.
         config_accessor(:jwt_verification_key) do
-          proc { RsaPublicKey.instance.fetch }
+          proc { Keyless::RsaPublicKey.instance.fetch }
         end
       end
     end

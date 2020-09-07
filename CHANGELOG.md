@@ -1,3 +1,9 @@
+### next
+
+* Corrected a migration bug on the configuration which used the wrong namespace
+  for `RsaPublicKey` (resulted in `uninitialized constant
+  Grape::Jwt::Authentication::Configuration::RsaPublicKey`)
+
 ### 2.0.0
 
 * Extracted the JWT verification functionality into its own gem
