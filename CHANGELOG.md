@@ -1,4 +1,4 @@
-### next
+### 2.0.1
 
 * Corrected a migration bug on the configuration which used the wrong namespace
   for `RsaPublicKey` (resulted in `uninitialized constant
