@@ -185,18 +185,18 @@ have your own mechanism.
 
 ```ruby
 # Get your public key, by using the global configuration
-public_key = Grape::Jwt::Authentication::RsaPublicKey.fetch
+public_key = Keyless::RsaPublicKey.fetch
 # => OpenSSL::PKey::RSA
 
 # Using a local configuration
-fetcher = Grape::Jwt::Authentication::RsaPublicKey.instance
+fetcher = Keyless::RsaPublicKey.instance
 fetcher.url = 'https://your.identity.provider/rsa_public_key'
 public_key = fetcher.fetch
 # => OpenSSL::PKey::RSA
 ```
 
 The following examples show you how to configure the
-`Grape::Jwt::Authentication::RsaPublicKey` class the global way. This is useful
+`Keyless::RsaPublicKey` class the global way. This is useful
 for a shared initializer place.
 
 ##### RSA public key location (URL)
@@ -261,7 +261,7 @@ the `RsaPublicKey` fetcher class. (by default)
 raw_token = 'eyJ0eXAiOiJKV1QifQ.eyJ0ZXN0Ijp0cnVlfQ.'
 
 # Parse the raw token and create a instance of it
-token = Grape::Jwt::Authentication::Jwt.new(raw_token)
+token = Keyless::Jwt.new(raw_token)
 
 # Access the payload easily (recursive-open-struct)
 token.payload.test
@@ -274,7 +274,7 @@ token.valid?
 ```
 
 The following examples show you how to configure the
-`Grape::Jwt::Authentication::Jwt` class the global way. This is useful for a
+`Keyless::Jwt` class the global way. This is useful for a
 shared initializer place.
 
 ##### Issuer verification
@@ -323,7 +323,7 @@ end
 You can configure your own verification key on the `Jwt` wrapper class.  This
 way you can pass your HMAC secret or your ECDSA public key to the JSON Web
 Token validation method. Here you need to pass a proc, on the
-`Grape::Jwt::Authentication::Jwt` class it has to be a scalar value. By default
+`Keyless::Jwt` class it has to be a scalar value. By default
 we use the `RsaPublicKey` class to retrieve the RSA public key.
 
 ```ruby
@@ -394,7 +394,7 @@ Grape::Jwt::Authentication.configure do |conf|
   # Custom verification logic.
   conf.authenticator = proc do |token|
     # Parse and instantiate a JWT verification instance
-    jwt = Grape::Jwt::Authentication::Jwt.new(token)
+    jwt = Keyless::Jwt.new(token)
 
     # We just allow valid access tokens
     jwt.access_token? && jwt.valid?

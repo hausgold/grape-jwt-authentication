@@ -1,7 +1,13 @@
-### next
+### 2.0.0
 
 * Extracted the JWT verification functionality into its own gem
   ([keyless](https://github.com/hausgold/keyless)) (#6)
+  * This extraction allows users to use the JWT/RSA key handling without Grape
+  * The API/configuration stays the same
+* With the major update to 2.0 we dropped a lot of code which is now located at
+  the Keyless gem:
+  * `Grape::Jwt::Authentication::Jwt` was replace with `Keyless::Jwt`
+  * `Grape::Jwt::Authentication::RsaPublicKey` was replace with `Keyless::RsaPublicKey`
 
 ### 1.3.0
 
