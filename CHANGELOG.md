@@ -1,7 +1,7 @@
-### 1.4.0
+### next
 
 * Extracted the JWT verification functionality into its own gem
-  ([keyless](https://github.com/hausgold/keyless))
+  ([keyless](https://github.com/hausgold/keyless)) (#6)
 
 ### 1.3.0
 

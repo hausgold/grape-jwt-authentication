@@ -16,6 +16,11 @@ RSpec.describe Grape::Jwt::Authentication do
           described_class.configure(&block)
         end.to yield_with_args(described_class.configuration)
       end
+
+      it 'reconfigures the dependencies' do
+        expect(described_class).to receive(:configure_dependencies).once
+        described_class.configure { nil }
+      end
     end
 
     describe '#reset_configuration!' do
@@ -23,6 +28,11 @@ RSpec.describe Grape::Jwt::Authentication do
         described_class.configuration.jwt_issuer = 'test'
         expect { described_class.reset_configuration! }.to \
           change { described_class.configuration.jwt_issuer }
+      end
+
+      it 'reconfigures the dependencies' do
+        expect(described_class).to receive(:configure_dependencies).once
+        described_class.reset_configuration!
       end
     end
   end
