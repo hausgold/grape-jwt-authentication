@@ -1,3 +1,7 @@
+### 2.0.2
+
+* Corrected some documentation glitches
+
 ### 2.0.1
 
 * Corrected a migration bug on the configuration which used the wrong namespace
