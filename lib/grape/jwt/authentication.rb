@@ -7,15 +7,13 @@ require 'active_support/cache'
 require 'active_support/core_ext/hash'
 require 'active_support/time'
 require 'active_support/time_with_zone'
-
 require 'jwt'
-
+require 'keyless'
 require 'grape'
 require 'grape/jwt/authentication/version'
 require 'grape/jwt/authentication/configuration'
+require 'grape/jwt/authentication/dependencies'
 require 'grape/jwt/authentication/jwt_handler'
-require 'grape/jwt/authentication/jwt'
-require 'grape/jwt/authentication/rsa_public_key'
 
 module Grape
   module Jwt
@@ -43,11 +41,13 @@ module Grape
       #   end
       def self.configure
         yield(configuration)
+        configure_dependencies
       end
 
       # Reset the current configuration with the default one.
       def self.reset_configuration!
         self.configuration = Configuration.new
+        configure_dependencies
       end
 
       included do
