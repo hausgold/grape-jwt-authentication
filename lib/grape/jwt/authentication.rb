@@ -14,6 +14,7 @@ require 'keyless'
 require 'grape'
 require 'grape/jwt/authentication/version'
 require 'grape/jwt/authentication/configuration'
+require 'grape/jwt/authentication/dependencies'
 require 'grape/jwt/authentication/jwt_handler'
 
 module Grape
@@ -42,6 +43,7 @@ module Grape
       #   end
       def self.configure
         yield(configuration)
+        configure_dependencies
       end
 
       # Reset the current configuration with the default one.
