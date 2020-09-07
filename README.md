@@ -305,7 +305,7 @@ end
 You can configure a different JSON Web Token verification option hash if your
 algorithm differs or you want some extra/different options.  Just watch out
 that you have to pass a proc to this configuration property. On the
-`Grape::Jwt::Authentication::Jwt` class it has to be a simple hash. The default
+`Keyless::Jwt` class it has to be a simple hash. The default
 is here the `RS256` algorithm with enabled expiration check, and issuer+audience
 check when the `jwt_issuer` / `jwt_beholder` are configured accordingly.
 

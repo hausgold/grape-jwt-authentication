@@ -96,10 +96,10 @@ module Grape
         # You can configure a different JSON Web Token verification option hash
         # if your algorithm differs or you want some extra/different options.
         # Just watch out that you have to pass a proc to this configuration
-        # property. On the {Grape::Jwt::Authentication::Jwt} class it has to be
-        # a simple hash. The default is here the RS256 algorithm with enabled
-        # expiration check, and issuer+audience check when the
-        # {jwt_issuer}/{jwt_beholder} are configured accordingly.
+        # property. On the {Keyless::Jwt} class it has to be a simple hash. The
+        # default is here the RS256 algorithm with enabled expiration check,
+        # and issuer+audience check when the {jwt_issuer}/{jwt_beholder} are
+        # configured accordingly.
         config_accessor(:jwt_options) do
           proc do
             conf = Grape::Jwt::Authentication.configuration
@@ -117,9 +117,9 @@ module Grape
         # You can configure your own verification key on the Jwt wrapper class.
         # This way you can pass your HMAC secret or your ECDSA public key to
         # the JSON Web Token validation method. Here you need to pass a proc,
-        # on the {Grape::Jwt::Authentication::Jwt} class it has to be a scalar
-        # value. By default we use the {Keyless::RsaPublicKey} class to
-        # retrieve the RSA public key.
+        # on the {Keyless::Jwt} class it has to be a scalar value. By default
+        # we use the {Keyless::RsaPublicKey} class to retrieve the RSA public
+        # key.
         config_accessor(:jwt_verification_key) do
           proc { Keyless::RsaPublicKey.instance.fetch }
         end

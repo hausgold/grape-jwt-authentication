@@ -65,7 +65,7 @@ module Grape
           # date, etc inside your API definition. When the authenticator stated
           # that the validation failed, then the parsed token is +nil+.
           #
-          # @return [Grape::Jwt::Authentication::Jwt, nil] the parsed token
+          # @return [Keyless::Jwt, nil] the parsed token
           def request_jwt
             env['grape_jwt_auth.parsed_token']
           end
