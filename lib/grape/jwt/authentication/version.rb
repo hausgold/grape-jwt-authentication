@@ -3,7 +3,7 @@
 module Grape
   module Jwt
     module Authentication
-      VERSION = '2.0.2'.freeze
+      VERSION = '2.0.3'.freeze
     end
   end
 end

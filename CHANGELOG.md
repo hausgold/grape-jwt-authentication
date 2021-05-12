@@ -1,3 +1,8 @@
+### 2.0.3
+
+* Pinned rspec-expectations to <= 3.9.2
+* Removed the rspec-expectations pinning
+
 ### 2.0.2
 
 * Corrected some documentation glitches
