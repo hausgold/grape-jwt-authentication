@@ -26,9 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack-test', '~> 0.8.2'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.9'
-  # TODO: Remove this pinning, when the broken 3.9.3 is fixed.
-  #       See: https://github.com/rspec/rspec-expectations/issues/1221
-  spec.add_development_dependency 'rspec-expectations', '<= 3.9.2'
   spec.add_development_dependency 'simplecov', '~> 0.15'
   spec.add_development_dependency 'timecop', '~> 0.9.1'
   spec.add_development_dependency 'vcr', '~> 3.0'
