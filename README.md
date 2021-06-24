@@ -1,6 +1,6 @@
 ![grape-jwt-authentication](doc/assets/project.svg)
 
-[![Build Status](https://travis-ci.com/hausgold/grape-jwt-authentication.svg?branch=master)](https://travis-ci.com/hausgold/grape-jwt-authentication)
+[![Continuous Integration](https://github.com/hausgold/grape-jwt-authentication/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/hausgold/grape-jwt-authentication/actions/workflows/test.yml)
 [![Gem Version](https://badge.fury.io/rb/grape-jwt-authentication.svg)](https://badge.fury.io/rb/grape-jwt-authentication)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ab14a3bab572edfbf305/maintainability)](https://codeclimate.com/repos/5cac8bc06c282f791c009a66/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ab14a3bab572edfbf305/test_coverage)](https://codeclimate.com/repos/5cac8bc06c282f791c009a66/test_coverage)
