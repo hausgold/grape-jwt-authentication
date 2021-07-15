@@ -19,8 +19,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby: [2.4, 2.5, 2.6]
-    env:
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     steps:
       - uses: actions/checkout@v2
 
@@ -38,7 +36,24 @@ jobs:
           target: ci/gem-test
 
       - name: Run the gem tests
-        run: bundle exec rake
+        run: make test
 
       - name: Upload the code coverage report
-        run: codeclimate
+        run: coverage
+
+  trigger-docs:
+    name: Trigger the documentation upload
+    runs-on: ubuntu-20.04
+    timeout-minutes: 2
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Prepare the virtual environment
+        uses: hausgold/actions/ci@master
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings: '${{ github.repository }}'
+          target: ci/noop
+
+      - name: Trigger the documentation upload
+        run: workflow documentation

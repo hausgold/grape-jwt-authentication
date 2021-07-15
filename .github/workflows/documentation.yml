@@ -1,0 +1,38 @@
+name: Build Documentation
+on:
+  repository_dispatch:
+    types: [documentation]
+
+concurrency:
+  group: 'docs'
+
+jobs:
+  docs:
+    name: Build gem documentation
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install the correct Ruby version
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+
+      - name: Prepare the virtual environment
+        uses: hausgold/actions/ci@master
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
+
+      - name: Build gem documentation
+        run: make docs
+
+      - name: Upload the code coverage report
+        run: coverage
+
+      - name: Add this job to the commit status
+        run: commit-status '${{ job.status }}'
+        if: always()

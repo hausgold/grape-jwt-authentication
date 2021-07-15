@@ -1,0 +1,9 @@
+version: "3"
+services:
+  test:
+    build: .
+    env_file: Envfile
+    network_mode: bridge
+    working_dir: /app
+    volumes:
+      - .:/app

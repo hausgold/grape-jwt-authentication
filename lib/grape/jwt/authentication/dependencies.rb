@@ -2,6 +2,7 @@
 
 module Grape
   module Jwt
+    # The Grape JWT authentication concern.
     module Authentication
       # Specifies which configuration keys are shared between keyless
       # and grape-jwt-authentication, so that we can easily pass through
@@ -10,7 +11,7 @@ module Grape
         authenticator rsa_public_key_url rsa_public_key_caching
         rsa_public_key_expiration jwt_issuer jwt_beholder jwt_options
         jwt_verification_key
-      ]
+      ].freeze
 
       # (Re)configure our gem dependencies. We take care of setting up
       # +Keyless+, which has been extracted from this gem.

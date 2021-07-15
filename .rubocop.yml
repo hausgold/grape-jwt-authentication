@@ -8,23 +8,20 @@ Documentation:
 
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   Exclude:
-    - db/schema.rb
     - bin/**/*
-    - db/migrate/**/*
-    - vendor/cache/**/*
-    - vendor/bundle/**/*
+    - vendor/**/*
     - build/**/*
+    - gemfiles/**/*
 
 Metrics/BlockLength:
   Exclude:
-    # Because of the Grape DSL
-    - lib/**/*.rb
     - Rakefile
-    - grape-jwt-authentication.gemspec
+    - '*.gemspec'
     - spec/**/*.rb
     - '**/*.rake'
+    - doc/**/*.rb
 
 # Document all the things.
 Style/DocumentationMethod:
@@ -41,3 +38,16 @@ Lint/AmbiguousBlockAssociation:
 # supported with the +with(hash_including)+ matchers
 RSpec/MessageSpies:
   EnforcedStyle: receive
+
+# Because nesting makes sense here to group the feature tests
+# more effective. This increases maintainability.
+RSpec/NestedGroups:
+  Max: 4
+
+# Disable regular Rails spec paths.
+RSpec/FilePath:
+  Enabled: false
+
+# Because we just implemented the ActiveRecord API.
+Rails/SkipsModelValidations:
+  Enabled: false
