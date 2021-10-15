@@ -1,3 +1,9 @@
+### 2.0.4
+
+* Migrated to Github Actions
+* Migrated to our own coverage reporting
+* Added the code statistics to the test process
+
 ### 2.0.3
 
 * Pinned rspec-expectations to <= 3.9.2
