@@ -19,6 +19,7 @@ jobs:
         with:
           ruby-version: 2.5
           bundler-cache: true
+          rubygems: latest
 
       - name: Prepare the virtual environment
         uses: hausgold/actions/ci@master
