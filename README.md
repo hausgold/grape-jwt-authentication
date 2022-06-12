@@ -8,7 +8,7 @@
 
 This gem is dedicated to easily integrate a JWT authentication to your
 [Grape](https://github.com/ruby-grape/grape) API. The real authentication
-functionality must be provided by the user and this makes this gem highy
+functionality must be provided by the user and this makes this gem highly
 flexible on the JWT verification level.
 
 - [Installation](#installation)
@@ -154,7 +154,7 @@ end
 
 #### Failed authentication handling
 
-When the client sends a corrected formatted JSON Web Token with the Bearer
+When the client sends a correctly formatted JSON Web Token with the Bearer
 authentication scheme within the `Authorization` header and your authenticator
 fails for some reason (token claims, wrong audience, bad subject, expired
 token, wrong cryptographic signing etc), this function is called to handle the
@@ -175,8 +175,8 @@ end
 #### RSA public key helper
 
 We provide a straightforward solution to deal with the provision of RSA public
-keys.  Somethimes you want to distribute them by file to each machine and have
-a local access, and somethimes you provide an endpoint on your identity
+keys.  Sometimes you want to distribute them by file to each machine and have
+a local access, and sometimes you provide an endpoint on your identity
 provider to fetch the RSA public key via HTTP/HTTPS.  The `RsaPublicKey` class
 helps you to fulfill this task easily.
 
