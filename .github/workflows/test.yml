@@ -20,7 +20,7 @@ jobs:
       matrix:
         ruby: [2.4, 2.5, 2.6]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1

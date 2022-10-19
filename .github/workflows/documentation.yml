@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1
