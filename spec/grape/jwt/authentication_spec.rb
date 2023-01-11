@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 RSpec.describe Grape::Jwt::Authentication do
   it 'has a version number' do
-    expect(Grape::Jwt::Authentication::VERSION).not_to be nil
+    expect(Grape::Jwt::Authentication::VERSION).not_to be_nil
   end
 
   describe 'configuration' do

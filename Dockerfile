@@ -2,7 +2,7 @@ FROM hausgold/ruby:2.5
 MAINTAINER Hermann Mayer <hermann.mayer@hausgold.de>
 
 # Update system gem
-RUN gem update --system
+RUN gem update --system '3.3.26'
 
 # Install system packages and the latest bundler
 RUN apt-get update -yqqq && \
@@ -11,8 +11,7 @@ RUN apt-get update -yqqq && \
     ca-certificates \
     bash-completion inotify-tools && \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && /usr/sbin/locale-gen && \
-  gem install bundler -v '~> 2.0' --no-document --no-prerelease && \
-  gem install bundler -v '~> 1.0' --no-document --no-prerelease
+  gem install bundler -v '~> 2.3.0' --no-document --no-prerelease
 
 # Add new web user
 RUN mkdir /app && \

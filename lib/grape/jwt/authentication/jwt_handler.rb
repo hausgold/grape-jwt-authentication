@@ -102,10 +102,8 @@ module Grape
         # interface.
         #
         # @param env [Hash{String => Mixed}] the Rack environment
-        #
-        # rubocop:disable Metrics/AbcSize because thats the auth handling core
+        # because thats the auth handling core
         # :reek:TooManyStatements because reek counts exception
-        #                         handling as statements
         def call(env)
           # Unfortunately Grape's middleware stack orders the error
           # handling higher than the formatter. So when a error is
@@ -139,7 +137,6 @@ module Grape
           # Call the user defined failed authentication handler.
           failed_handler.call(token, @app)
         end
-        # rubocop:enable Metrics/AbcSize
       end
     end
   end

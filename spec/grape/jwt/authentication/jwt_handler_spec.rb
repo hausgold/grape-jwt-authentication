@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 RSpec.describe Grape::Jwt::Authentication::JwtHandler do
   let(:jwt) { JWT.encode({ test: true }, nil, 'none') }
   let(:conf) { Grape::Jwt::Authentication.configuration }
@@ -17,8 +19,8 @@ RSpec.describe Grape::Jwt::Authentication::JwtHandler do
       ['mixed', 'Bearer token="7601065c39d6c3fe31cb893eee"'],
       %w[concat Bearer7601065c39d6c3fe31cb893eee],
       ['token-option-only', 'Token option_a="value_a"'],
-      ['auth-scheme-missing', '4r112879hd21932r'],
-      ['auth-credentials-missing', 'Bearer']
+      %w[auth-scheme-missing 4r112879hd21932r],
+      %w[auth-credentials-missing Bearer]
     ].each do |data|
       let(:env) { { 'HTTP_AUTHORIZATION' => data.last } }
 
