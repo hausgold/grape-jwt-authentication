@@ -1,14 +1,19 @@
-require: rubocop-rspec
+require:
+  - rubocop-rspec
+  - rubocop-rails
 
 Rails:
   Enabled: true
 
-Documentation:
+Style/Documentation:
   Enabled: true
 
 AllCops:
+  NewCops: enable
+  SuggestExtensions: false
   DisplayCopNames: true
   TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
   Exclude:
     - bin/**/*
     - vendor/**/*
@@ -22,6 +27,14 @@ Metrics/BlockLength:
     - spec/**/*.rb
     - '**/*.rake'
     - doc/**/*.rb
+
+# MFA is not yet enabled for our gems yet.
+Gemspec/RequireMFA:
+  Enabled: false
+
+# We stay with the original Ruby Style Guide recommendation.
+Layout/LineLength:
+  Max: 80
 
 # Document all the things.
 Style/DocumentationMethod:
@@ -50,4 +63,8 @@ RSpec/FilePath:
 
 # Because we just implemented the ActiveRecord API.
 Rails/SkipsModelValidations:
+  Enabled: false
+
+# We highly depend on memoized helpers across the specs.
+RSpec/MultipleMemoizedHelpers:
   Enabled: false

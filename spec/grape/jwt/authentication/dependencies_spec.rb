@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 # rubocop:disable RSpec/DescribeClass because there is no class/module here
 RSpec.describe 'Dependency pass-through' do
   let(:described_class) { Grape::Jwt::Authentication }
