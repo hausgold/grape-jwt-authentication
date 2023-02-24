@@ -1,5 +1,9 @@
 ### next
 
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 2.2.0
+
 * Added support for Gem release automation
 
 ### 2.1.0
