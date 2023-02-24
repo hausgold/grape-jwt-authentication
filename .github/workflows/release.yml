@@ -1,0 +1,47 @@
+name: Release
+run-name: Release ${{ github.event.inputs.VERSION }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: The new version to release. (eg. `1.0.0`) Check the
+          changelog for the latest version.
+
+concurrency:
+  group: '${{ github.event.inputs.VERSION }}'
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Release the gem
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Ruby 2.5
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+          rubygems: '3.3.26'
+
+      - name: Prepare the virtual environment
+        uses: hausgold/actions/ci@master
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
+
+      - name: Switch to SSH remotes for the Git repository
+        run: git-ssh-remotes
+
+      - name: Enforce version '${{ github.event.inputs.VERSION }}'
+        run: set-gem-version '${{ github.event.inputs.VERSION }}'
+
+      - name: Prepare the Git release commit
+        run: git-release-commit '${{ github.event.inputs.VERSION }}'
+
+      - name: Push the release Git commit/tag and package to the registry
+        run: make release
