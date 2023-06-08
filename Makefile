@@ -13,6 +13,7 @@ BASH_RUN_SHELL_FLAGS ?=
 
 # Directories
 VENDOR_DIR ?= vendor/bundle
+GEMFILES_DIR ?= gemfiles
 
 # Host binaries
 AWK ?= awk
@@ -34,6 +35,11 @@ RAKE ?= rake
 RSPEC ?= rspec
 RUBOCOP ?= rubocop
 YARD ?= yard
+
+# Files
+GEMFILES ?= $(subst _,-,$(patsubst $(GEMFILES_DIR)/%.gemfile,%,\
+	$(wildcard $(GEMFILES_DIR)/*.gemfile)))
+TEST_GEMFILES := $(GEMFILES:%=test-%)
 
 # Define a generic shell run wrapper
 # $1 - The command to run
