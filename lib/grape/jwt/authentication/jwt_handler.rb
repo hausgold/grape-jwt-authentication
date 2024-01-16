@@ -115,7 +115,8 @@ module Grape
           Grape::Middleware::Formatter.new(->(_) {}).call(env)
 
           # Parse the JWT token from the request headers.
-          # Downcase the header keys to account for HTTP/2+ semantics in Grape 2.0.0+
+          # Downcase the header keys to account for HTTP/2+
+          # semantics in Grape 2.0.0+
           lowercase_env = env.transform_keys(&:downcase)
           token = parse_token(lowercase_env['http_authorization'])
 
