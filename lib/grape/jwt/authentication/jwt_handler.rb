@@ -115,7 +115,9 @@ module Grape
           Grape::Middleware::Formatter.new(->(_) {}).call(env)
 
           # Parse the JWT token from the request headers.
-          token = parse_token(env['HTTP_AUTHORIZATION'])
+          # Downcase the header keys to account for HTTP/2+ semantics in Grape 2.0.0+
+          lowercase_env = env.transform_keys(&:downcase)
+          token = parse_token(lowercase_env['http_authorization'])
 
           # Inject the parsed token to the Rack environment.
           inject_token_into_env(env, token)

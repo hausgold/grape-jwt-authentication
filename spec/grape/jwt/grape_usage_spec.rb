@@ -110,6 +110,11 @@ RSpec.shared_examples 'api' do
     expect(last_response.body).to be_eql('{"test":true}')
   end
 
+  it 'succeeds on a lowercase authorization header' do
+    get '/v1/test', {}, {'http_authorization' => "Bearer #{valid_token}"}
+    expect(last_response.body).to be_eql('{"test":true}')
+  end
+
   describe 'helpers' do
     describe '#original_request_jwt' do
       it 'echos the JWT' do
