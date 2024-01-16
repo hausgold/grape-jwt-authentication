@@ -111,7 +111,8 @@ RSpec.shared_examples 'api' do
   end
 
   it 'succeeds on a lowercase authorization header' do
-    get '/v1/test', {}, {'http_authorization' => "Bearer #{valid_token}"}
+    header 'authorization', "Bearer #{valid_token}"
+    get '/v1/test'
     expect(last_response.body).to be_eql('{"test":true}')
   end
 
