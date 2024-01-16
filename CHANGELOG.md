@@ -1,5 +1,9 @@
 ### next
 
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 2.3.0
+
 * Implemented case-insensitive header value checks for Grape 2.0.0+ compatibility, aligning with HTTP/2+ semantics (#11, #12)
 * Moved the development dependencies from the gemspec to the Gemfile (#10)
 
