@@ -23,7 +23,7 @@ jobs:
     env:
       BUNDLE_GEMFILE: 'gemfiles/rails_${{ matrix.rails }}.gemfile'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1
