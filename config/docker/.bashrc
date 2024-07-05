@@ -16,7 +16,9 @@ sudo sed -i 's/autostart=.*/autostart=false/g' /etc/supervisor/conf.d/*
 sudo supervisord >/dev/null 2>&1 &
 
 # Wait for supervisord
-while ! supervisorctl status >/dev/null 2>&1; do sleep 1; done
+while ! (sudo supervisorctl status | grep avahi) >/dev/null 2>&1; do
+  sleep 1
+done
 
 # Boot the mDNS stack
 echo '# Start the mDNS stack'
