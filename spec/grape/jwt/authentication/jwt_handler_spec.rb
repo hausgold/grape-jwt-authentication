@@ -84,7 +84,7 @@ RSpec.describe Grape::Jwt::Authentication::JwtHandler do
       it 'inject the parsed token which makes the payload accessible' do
         handler.call(env)
         expect(env['grape_jwt_auth.parsed_token'].payload).to \
-          be_eql(RecursiveOpenStruct.new(test: true))
+          eql(RecursiveOpenStruct.new(test: true))
       end
     end
   end

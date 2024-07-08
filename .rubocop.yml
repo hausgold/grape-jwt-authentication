@@ -12,7 +12,7 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   DisplayCopNames: true
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
   Exclude:
     - bin/**/*

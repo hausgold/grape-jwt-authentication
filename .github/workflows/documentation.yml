@@ -17,9 +17,9 @@ jobs:
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5
+          ruby-version: 2.7
           bundler-cache: true
-          rubygems: '3.3.26'
+          rubygems: '3.4.22'
 
       - name: Prepare the virtual environment
         uses: hausgold/actions/ci@master

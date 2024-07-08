@@ -87,33 +87,33 @@ RSpec.shared_examples 'api' do
   it 'fails on missing authorization header' do
     get '/v1/test'
     expect(last_response.body).to \
-      be_eql('Malformed!')
+      eql('Malformed!')
   end
 
   it 'fails on a malformed authorization header' do
     header 'Authorization', "Bearer #{malformed_token}"
     get '/v1/test'
     expect(last_response.body).to \
-      be_eql('Malformed!')
+      eql('Malformed!')
   end
 
   it 'fails on a wrong/bad JSON Web Token' do
     header 'Authorization', "Bearer #{invalid_token}"
     get '/v1/test'
     expect(last_response.body).to \
-      be_eql('Go away!')
+      eql('Go away!')
   end
 
   it 'succeeds on a fine JSON Web Token' do
     header 'Authorization', "Bearer #{valid_token}"
     get '/v1/test'
-    expect(last_response.body).to be_eql('{"test":true}')
+    expect(last_response.body).to eql('{"test":true}')
   end
 
   it 'succeeds on a lowercase authorization header' do
     header 'authorization', "Bearer #{valid_token}"
     get '/v1/test'
-    expect(last_response.body).to be_eql('{"test":true}')
+    expect(last_response.body).to eql('{"test":true}')
   end
 
   describe 'helpers' do
@@ -121,7 +121,7 @@ RSpec.shared_examples 'api' do
       it 'echos the JWT' do
         header 'Authorization', "Bearer #{valid_token}"
         get '/v1/token'
-        expect(last_response.body).to be_eql(%({"token":"#{valid_token}"}))
+        expect(last_response.body).to eql(%({"token":"#{valid_token}"}))
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.shared_examples 'api' do
       it 'echos the JWT payload' do
         header 'Authorization', "Bearer #{valid_token}"
         get '/v1/payload'
-        expect(last_response.body).to be_eql(%({"payload":{"test":true}}))
+        expect(last_response.body).to eql(%({"payload":{"test":true}}))
       end
     end
   end
