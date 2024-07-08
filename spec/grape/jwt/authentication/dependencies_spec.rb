@@ -45,7 +45,7 @@ RSpec.describe 'Dependency pass-through' do
       jwt_verification_key
     ].each do |option|
       it "sets the '#{option}' option" do
-        expect(Keyless.configuration).to receive("#{option}=".to_sym)
+        expect(Keyless.configuration).to receive(:"#{option}=")
       end
     end
   end

@@ -36,21 +36,21 @@ RSpec.describe 'Rack usage' do
   it 'fails on missing authorization header' do
     get '/'
     expect(last_response.body).to \
-      be_eql('Authorization header is malformed.')
+      eql('Authorization header is malformed.')
   end
 
   it 'fails on a malformed authorization header' do
     header 'Authorization', "Bearer #{malformed_token}"
     get '/'
     expect(last_response.body).to \
-      be_eql('Authorization header is malformed.')
+      eql('Authorization header is malformed.')
   end
 
   it 'fails on a wrong/bad JSON Web Token' do
     header 'Authorization', "Bearer #{invalid_token}"
     get '/'
     expect(last_response.body).to \
-      be_eql('Access denied.')
+      eql('Access denied.')
   end
 
   it 'succeeds on a fine JSON Web Token' do
