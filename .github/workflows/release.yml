@@ -46,3 +46,9 @@ jobs:
 
       - name: Push the release Git commit/tag and package to the registry
         run: make release
+
+      - name: Build and upload application documentation
+        run: api-docs && coverage --docs-only
+        env:
+          WORKFLOW_DISPATCH_TOKEN: '${{ secrets.WORKFLOW_DISPATCH_TOKEN }}'
+          GITHUB_TAG: 'v${{ github.event.inputs.VERSION }}'

@@ -45,21 +45,3 @@ jobs:
 
       - name: Upload the code coverage report
         run: coverage
-
-  trigger-docs:
-    name: Trigger the documentation upload
-    runs-on: ubuntu-22.04
-    timeout-minutes: 2
-    needs: test
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - name: Prepare the virtual environment
-        uses: hausgold/actions/ci@master
-        with:
-          clone_token: '${{ secrets.CLONE_TOKEN }}'
-          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
-          settings: '${{ github.repository }}'
-          target: ci/noop
-
-      - name: Trigger the documentation upload
-        run: workflow documentation
