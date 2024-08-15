@@ -3,4 +3,4 @@
 --markup=rdoc
 -
 README.md
-lib/**/*.rb
+doc/examples/**/*.rb
