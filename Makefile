@@ -148,8 +148,14 @@ shell-irb:
 
 docs:
 	# Build the API documentation
+	@$(RM) -rf doc/api
 	@$(call run-shell,$(BUNDLE) exec $(YARD) -q && \
 		$(BUNDLE) exec $(YARD) stats --list-undoc --compact)
+	@$(MKDIR) -p doc/api/doc doc/api/assets
+	@$(CP) -ar doc/assets doc/api/doc
+	@$(CP) -ar doc/assets/* doc/api/assets
+	#
+	# Docs: file://$(abspath doc/api)/index.html
 
 notes:
 	# Print the code statistics (library and test suite)
