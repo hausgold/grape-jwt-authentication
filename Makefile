@@ -19,6 +19,7 @@ GEMFILES_DIR ?= gemfiles
 AWK ?= awk
 BASH ?= bash
 COMPOSE ?= docker-compose
+CP ?= cp
 DOCKER ?= docker
 GREP ?= grep
 ID ?= id
