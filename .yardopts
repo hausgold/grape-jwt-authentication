@@ -4,3 +4,4 @@
 -
 README.md
 doc/examples/**/*.rb
+doc/*.md
