@@ -37,6 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'grape', '>= 1.0', '< 3.0'
   spec.add_runtime_dependency 'httparty', '>= 0.21'
   spec.add_runtime_dependency 'jwt', '~> 2.6'
-  spec.add_runtime_dependency 'keyless', '~> 1.1'
-  spec.add_runtime_dependency 'recursive-open-struct', '~> 1.1'
+  spec.add_runtime_dependency 'keyless', '~> 1.4'
+  spec.add_runtime_dependency 'recursive-open-struct', '~> 2.0'
 end
