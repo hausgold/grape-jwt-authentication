@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'zeitwerk'
 require 'active_support'
 require 'active_support/concern'
 require 'active_support/configurable'
@@ -10,10 +11,6 @@ require 'active_support/time_with_zone'
 require 'jwt'
 require 'keyless'
 require 'grape'
-require 'grape/jwt/authentication/version'
-require 'grape/jwt/authentication/configuration'
-require 'grape/jwt/authentication/dependencies'
-require 'grape/jwt/authentication/jwt_handler'
 
 module Grape
   module Jwt
@@ -22,32 +19,44 @@ module Grape
       extend ActiveSupport::Concern
       include Grape::DSL::API
 
+      # Setup a Zeitwerk autoloader instance and configure it
+      loader = Zeitwerk::Loader.for_gem_extension(Grape::Jwt)
+
+      # Finish the auto loader configuration
+      loader.setup
+
+      # Make sure to eager load all SDK constants
+      loader.eager_load
+
       class << self
         attr_writer :configuration
-      end
 
-      # Retrieve the current configuration object.
-      #
-      # @return [Configuration]
-      def self.configuration
-        @configuration ||= Configuration.new
-      end
+        # Include top-level features
+        include Extensions::Dependencies
 
-      # Configure the concern by providing a block which takes
-      # care of this task. Example:
-      #
-      #   Grape::Jwt::Authentication.configure do |conf|
-      #     # conf.xyz = [..]
-      #   end
-      def self.configure
-        yield(configuration)
-        configure_dependencies
-      end
+        # Retrieve the current configuration object.
+        #
+        # @return [Configuration]
+        def configuration
+          @configuration ||= Configuration.new
+        end
 
-      # Reset the current configuration with the default one.
-      def self.reset_configuration!
-        self.configuration = Configuration.new
-        configure_dependencies
+        # Configure the concern by providing a block which takes
+        # care of this task. Example:
+        #
+        #   Grape::Jwt::Authentication.configure do |conf|
+        #     # conf.xyz = [..]
+        #   end
+        def configure
+          yield(configuration)
+          configure_dependencies
+        end
+
+        # Reset the current configuration with the default one.
+        def reset_configuration!
+          self.configuration = Configuration.new
+          configure_dependencies
+        end
       end
 
       included do
