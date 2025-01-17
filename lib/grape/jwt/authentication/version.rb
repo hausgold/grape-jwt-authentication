@@ -5,7 +5,7 @@ module Grape
     # The gem version details.
     module Authentication
       # The version of the +grape-jwt-authentication+ gem
-      VERSION = '2.7.0'
+      VERSION = '2.7.1'
 
       class << self
         # Returns the version of gem as a string.
