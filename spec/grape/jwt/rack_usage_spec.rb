@@ -5,7 +5,7 @@ require 'rack'
 require 'rack/lobster'
 require 'rack/test'
 
-# rubocop:disable RSpec/DescribeClass because we test not a specific class
+# rubocop:disable RSpec/DescribeClass -- because we test not a specific class
 RSpec.describe 'Rack usage' do
   include Rack::Test::Methods
 

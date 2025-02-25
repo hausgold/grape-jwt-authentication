@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'rack'
 require 'rack/test'
 
-# rubocop:disable Style/GlobalVars because of the test modules
+# rubocop:disable Style/GlobalVars -- because of the test modules
 $custom_authenticator = proc do |token|
   token == 'eyJ0eXAiOiJKV1QifQ.eyJ0ZXN0Ijp0cnVlfQ.'
 end
@@ -135,7 +135,7 @@ RSpec.shared_examples 'api' do
   end
 end
 
-# rubocop:disable RSpec/DescribeClass because we test not a specific class
+# rubocop:disable RSpec/DescribeClass -- because we test not a specific class
 RSpec.describe 'Grape usage' do
   include Rack::Test::Methods
 
