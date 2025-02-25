@@ -1,5 +1,7 @@
 require:
   - rubocop-rspec
+
+plugins:
   - rubocop-rails
 
 Rails:
