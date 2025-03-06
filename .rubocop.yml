@@ -1,7 +1,5 @@
-require:
-  - rubocop-rspec
-
 plugins:
+  - rubocop-rspec
   - rubocop-rails
 
 Rails:
@@ -60,7 +58,7 @@ RSpec/NestedGroups:
   Max: 4
 
 # Disable regular Rails spec paths.
-RSpec/FilePath:
+Rails/FilePath:
   Enabled: false
 
 # Because we just implemented the ActiveRecord API.
