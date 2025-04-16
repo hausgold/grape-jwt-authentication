@@ -1,5 +1,5 @@
 FROM hausgold/ruby:2.7
-MAINTAINER Hermann Mayer <hermann.mayer@hausgold.de>
+LABEL org.opencontainers.image.authors="containers@hausgold.de"
 
 # Update system gem
 RUN gem update --system '3.4.22'
