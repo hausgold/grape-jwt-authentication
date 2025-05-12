@@ -1,68 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   id="Ebene_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 800 200"
-   xml:space="preserve"
-   width="800"
-   height="200"><metadata
-   id="metadata33"><rdf:RDF><cc:Work
-       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
-   id="defs31" />
-<style
-   type="text/css"
-   id="style2">
-    .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#E73E11;}
-    .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#0371B9;}
-    .st2{fill:#132E48;}
-    .st3{font-family:'OpenSans-Bold';}
-    .st4{font-size:29.5168px;}
-    .st5{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
-    .st6{opacity:0.5;fill:#132E48;}
-    .st7{font-family:'OpenSans';}
-    .st8{font-size:12px;}
-</style>
-<g
-   transform="translate(0,1.53584)"
-   id="g828"><g
-   transform="translate(35.93985,35.66416)"
-   id="g8">
-    <path
-   style="clip-rule:evenodd;fill:#e73e11;fill-rule:evenodd"
-   id="path4"
-   d="m -0.1,124.4 c 0,0 33.7,-123.2 66.7,-123.2 12.8,0 26.9,21.9 38.8,47.2 -23.6,27.9 -66.6,59.7 -94,76 -7.1,0 -11.5,0 -11.5,0 z"
-   class="st0" />
-    <path
-   style="clip-rule:evenodd;fill:#0371b9;fill-rule:evenodd"
-   id="path6"
-   d="m 88.1,101.8 c 13.5,-10.4 18.4,-16.2 27.1,-25.4 10,25.7 16.7,48 16.7,48 0,0 -41.4,0 -78,0 14.6,-7.9 18.7,-10.7 34.2,-22.6 z"
-   class="st1" />
-</g><text
-   y="106.40316"
-   x="192.43155"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:29.51733398px;font-family:'Open Sans', sans-serif;-inkscape-font-specification:'OpenSans-Bold, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#132e48"
-   id="text10"
-   class="st2 st3 st4">grape-jwt-authentication</text>
-<rect
-   style="clip-rule:evenodd;fill:none;fill-rule:evenodd"
-   id="rect12"
-   height="24"
-   width="314.5"
-   class="st5"
-   y="118.06416"
-   x="194.23985" /><text
-   y="127.22146"
-   x="194.21715"
-   style="font-size:12px;font-family:'Open Sans', sans-serif;opacity:0.5;fill:#132e48;-inkscape-font-specification:'Open Sans, sans-serif, Normal';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-   id="text14"
-   class="st6 st7 st8">A reusable Grape JWT authentication concern</text>
-</g>
-</svg>
+<svg id="hg-readme-banner-v2" viewBox="0 0 800 200" width="800" height="200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="a" x1="112.46" y1="309.13" x2="314.5" y2="309.13" gradientUnits="userSpaceOnUse" gradientTransform="translate(-33.985 -122.816)"><stop offset="0" stop-color="#1992f4" /><stop offset="1" stop-color="#2b8af6" /></linearGradient></defs><style>.st3{font-family:&apos;OpenSans-Bold&apos;}.st4{font-size:29.5168px}.st5{fill-rule:evenodd;clip-rule:evenodd;fill:none}.st7{font-family:&apos;OpenSans&apos;}.st8{font-size:12px}@media (prefers-color-scheme:dark){text{fill:#f0f6fc!important}}</style>
+<text y="107.939" x="192.432" style="font-family:'Open Sans', sans-serif;-inkscape-font-specification:'OpenSans-Bold, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" class="st3 st4" font-weight="700" font-size="29.517" font-family="'Open Sans',sans-serif" fill="#3f3e4b"
+>grape-jwt-authentication</text>
+<path class="st5" clip-rule="evenodd" fill="none" fill-rule="evenodd" d="M194.24 119.6h314.5v24h-314.5z"/>
+<text y="128.757" x="194.217" style="font-family:'Open Sans', sans-serif;-inkscape-font-specification:'Open Sans, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" class="st7 st8" font-weight="400" font-size="12" font-family="'Open Sans',sans-serif" opacity=".75" fill="#3f3e4b"
+>A reusable Grape JWT authentication concern</text>
+<g transform="translate(33.985 122.816)"><path d="M129.427 32.4q-7-20.71-14.09-41.44c-.33-1-.52-1.18-1.34-.25-3.1 3.48-6.25 6.92-9.49 10.26a180.23 180.23 0 0 1-18.54 16.15 193.7 193.7 0 0 1-21.95 15.43c-2.53 1.47-5.08 2.91-7.62 4.36l.11.27h73.05c1 .1 1.4-.13 1-1.22-.4-1.09-.73-2.38-1.13-3.56z" fill="url(#a)" /><path d="M89.077-63.87c-3.57-5.58-7.42-10.95-12.62-15.17-3.93-3.19-8.28-5-13.42-3.32a23 23 0 0 0-8.76 5.6 66.77 66.77 0 0 0-10.34 13.09c-8 12.68-14.06 26.28-19.28 40.25-4.6 12.33-8.82 24.8-12.95 37.29-2.45 7.41-4.39 15-6.61 22.49-.26.88 0 1 .79 1h7.4c1.23 0 2.44.14 3.6-.68 9.17-6.45 18.51-12.67 27.55-19.31a396.21 396.21 0 0 0 37.36-31.3 245.79 245.79 0 0 0 20.74-22 1.6 1.6 0 0 0 .26-2 224.45 224.45 0 0 0-13.72-25.94z" fill="#f2686d" /></g></svg>
