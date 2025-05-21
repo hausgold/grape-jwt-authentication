@@ -1,7 +1,11 @@
 ### next
 
-* Corrected some RuboCop glitches (#19)
-* Upgraded the rubocop dependencies (#20)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 2.8.1 (21 May 2025)
+
+* Corrected some RuboCop glitches ([#19](https://github.com/hausgold/grape-jwt-authentication/pull/19))
+* Upgraded the rubocop dependencies ([#20](https://github.com/hausgold/grape-jwt-authentication/pull/20))
 
 ### 2.8.0 (30 January 2025)
 
