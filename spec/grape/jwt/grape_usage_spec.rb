@@ -152,13 +152,13 @@ RSpec.describe 'Grape usage' do
       end
     end
 
-    include_examples 'api'
+    it_behaves_like 'api'
   end
 
   context 'with API-local configuration' do
     let(:app) { TestLocalConfiguration::API }
 
-    include_examples 'api'
+    it_behaves_like 'api'
   end
 end
 # rubocop:enable RSpec/DescribeClass
