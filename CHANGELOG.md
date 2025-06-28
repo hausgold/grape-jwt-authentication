@@ -1,7 +1,11 @@
 ### next
 
-* Corrected some RuboCop glitches (#21)
-* Drop Ruby 2 and end of life Rails (<7.1) (#22)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.0.0 (28 June 2025)
+
+* Corrected some RuboCop glitches ([#21](https://github.com/hausgold/grape-jwt-authentication/pull/21))
+* Drop Ruby 2 and end of life Rails (<7.1) ([#22](https://github.com/hausgold/grape-jwt-authentication/pull/22))
 
 ### 2.8.1 (21 May 2025)
 
