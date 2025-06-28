@@ -17,7 +17,7 @@ module Grape
 
         # A generic JWT part, the full token contains three parts
         # separated by a period.
-        JWT_PART_REGEX = /([a-zA-Z0-9\-_]+)?/.freeze
+        JWT_PART_REGEX = /([a-zA-Z0-9\-_]+)?/
 
         # A common JWT validation regex which meets the RFC specs.
         JWT_REGEX = Regexp.new("^#{([JWT_PART_REGEX] * 3).join('\.')}$").freeze

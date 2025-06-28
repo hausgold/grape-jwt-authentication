@@ -20,12 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Ruby 2.7
+      - name: Install Ruby 3.2
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.2
           bundler-cache: true
-          rubygems: '3.4.22'
+          rubygems: '3.6.9'
 
       - name: Prepare the virtual environment
         uses: hausgold/actions/ci@master

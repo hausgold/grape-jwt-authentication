@@ -8,7 +8,7 @@ require 'grape/jwt/authentication'
 require 'timecop'
 
 # Load all support helpers and shared examples
-Dir[File.join(__dir__, 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
