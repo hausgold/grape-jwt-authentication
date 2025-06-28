@@ -117,7 +117,7 @@ test-style: \
 test-style-ruby:
 	# Run the static code analyzer (rubocop)
 	@$(call run-shell,$(BUNDLE) exec $(RUBOCOP) -a \
-		|| ($(TEST) $$($(RUBY_VERSION)) != '2.7' && true))
+		|| ($(TEST) $$($(RUBY_VERSION)) != '3.2' && true))
 
 clean:
 	# Clean the dependencies
