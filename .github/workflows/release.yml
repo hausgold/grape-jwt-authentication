@@ -16,7 +16,7 @@ jobs:
   docs:
     name: Release the gem
     runs-on: ubuntu-22.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
