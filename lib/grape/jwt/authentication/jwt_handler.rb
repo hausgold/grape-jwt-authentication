@@ -102,8 +102,6 @@ module Grape
         # interface.
         #
         # @param env [Hash{String => Mixed}] the Rack environment
-        # because thats the auth handling core
-        # :reek:TooManyStatements because reek counts exception
         def call(env)
           # Unfortunately Grape's middleware stack orders the error
           # handling higher than the formatter. So when a error is

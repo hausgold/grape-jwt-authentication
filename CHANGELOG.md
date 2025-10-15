@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Dropped Reek (#24)
 
 ### 3.0.0 (28 June 2025)
 
