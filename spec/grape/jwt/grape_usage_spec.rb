@@ -42,6 +42,7 @@ module TestGlobalConfiguration
     end
 
     include Grape::Jwt::Authentication
+
     auth :jwt
   end
 end
@@ -73,6 +74,7 @@ module TestLocalConfiguration
     end
 
     include Grape::Jwt::Authentication
+
     auth :jwt, malformed: $custom_malformed_auth_handler,
                failed: $custom_failed_auth_handler,
          &$custom_authenticator
