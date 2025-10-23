@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'grape', '>= 1.0', '< 3.0'
   spec.add_dependency 'httparty', '>= 0.21'
   spec.add_dependency 'jwt', '~> 2.6'
-  spec.add_dependency 'keyless', '~> 2.0'
+  spec.add_dependency 'keyless', '~> 2.1'
   spec.add_dependency 'mutex_m', '>= 0.3'
   spec.add_dependency 'recursive-open-struct', '~> 2.0'
   spec.add_dependency 'zeitwerk', '~> 2.6'
