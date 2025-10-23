@@ -1,9 +1,13 @@
 ### next
 
-* Dropped Reek (#24)
-* Added support for Rails 8.1 (#25)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.1.0 (23 October 2025)
+
+* Dropped Reek ([#24](https://github.com/hausgold/grape-jwt-authentication/pull/24))
+* Added support for Rails 8.1 ([#25](https://github.com/hausgold/grape-jwt-authentication/pull/25))
 * Switched from `ActiveSupport::Configurable` to a custom implementation based
-  on `ActiveSupport::OrderedOptions` (#26)
+  on `ActiveSupport::OrderedOptions` ([#26](https://github.com/hausgold/grape-jwt-authentication/pull/26))
 
 ### 3.0.0 (28 June 2025)
 
