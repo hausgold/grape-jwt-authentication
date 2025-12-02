@@ -19,7 +19,6 @@ module Grape
     # The Grape JWT authentication concern.
     module Authentication
       extend ActiveSupport::Concern
-      include Grape::DSL::API
 
       # Setup a Zeitwerk autoloader instance and configure it
       loader = Zeitwerk::Loader.for_gem_extension(Grape::Jwt)
