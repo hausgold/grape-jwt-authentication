@@ -8,6 +8,7 @@ puts <<DESC
   -------------- Versions --------------
             Ruby: #{"#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"}
   Active Support: #{ActiveSupport.version}
+           Grape: #{Gem.loaded_specs['grape'].version}
   --------------------------------------
 DESC
 puts
