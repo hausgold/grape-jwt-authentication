@@ -1,10 +1,14 @@
 ### next
 
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.2.0 (2 December 2025)
+
 * Added appraisals for Grape 1, 2 and 3 and loosed up the version requirement
-  to `>= 1, < 4.0` (#28)
+  to `>= 1, < 4.0` ([#28](https://github.com/hausgold/grape-jwt-authentication/pull/28))
 * Loosed up the version requirement for the `jwt` gem to `>= 2.6`, so people
   can [migrate to
-  3.0+](https://github.com/jwt/ruby-jwt/blob/v3.1.2/UPGRADING.md) (#28)
+  3.0+](https://github.com/jwt/ruby-jwt/blob/v3.1.2/UPGRADING.md) ([#28](https://github.com/hausgold/grape-jwt-authentication/pull/28))
 
 ### 3.1.0 (23 October 2025)
 
