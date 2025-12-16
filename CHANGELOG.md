@@ -1,6 +1,10 @@
 ### next
 
-* Dropped the unused `httparty` gem (#29)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.3.0 (16 December 2025)
+
+* Dropped the unused `httparty` gem ([#29](https://github.com/hausgold/grape-jwt-authentication/pull/29))
 
 ### 3.2.0 (2 December 2025)
 
