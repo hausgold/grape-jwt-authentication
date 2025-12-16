@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Dropped the unused `httparty` gem (#29)
 
 ### 3.2.0 (2 December 2025)
 
