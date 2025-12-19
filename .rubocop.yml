@@ -1,11 +1,12 @@
+inherit_from:
+  - https://potpourri.hausgold.de/config/rubocop.yml
+  - https://potpourri.hausgold.de/config/rubocop-gem.yml
+
 plugins:
   - rubocop-rspec
   - rubocop-rails
 
 Rails:
-  Enabled: true
-
-Style/Documentation:
   Enabled: true
 
 AllCops:
@@ -20,42 +21,11 @@ AllCops:
     - build/**/*
     - gemfiles/**/*
 
-Metrics/BlockLength:
-  Exclude:
-    - Rakefile
-    - '*.gemspec'
-    - spec/**/*.rb
-    - '**/*.rake'
-    - doc/**/*.rb
-
-# MFA is not yet enabled for our gems yet.
-Gemspec/RequireMFA:
-  Enabled: false
-
-# We stay with the original Ruby Style Guide recommendation.
-Layout/LineLength:
-  Max: 80
-
-# Document all the things.
-Style/DocumentationMethod:
-  Enabled: true
-  RequireForNonPublicMethods: true
-
 # It's a deliberate idiom in RSpec.
 # See: https://github.com/bbatsov/rubocop/issues/4222
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - "spec/**/*"
-
-# Because +expect_any_instance_of().to have_received()+ is not
-# supported with the +with(hash_including)+ matchers
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
-# Because nesting makes sense here to group the feature tests
-# more effective. This increases maintainability.
-RSpec/NestedGroups:
-  Max: 4
 
 # Disable regular Rails spec paths.
 Rails/FilePath:
@@ -63,8 +33,4 @@ Rails/FilePath:
 
 # Because we just implemented the ActiveRecord API.
 Rails/SkipsModelValidations:
-  Enabled: false
-
-# We highly depend on memoized helpers across the specs.
-RSpec/MultipleMemoizedHelpers:
   Enabled: false

@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Migrated to a shared Rubocop configuration for HAUSGOLD gems (#30)
 
 ### 3.3.0 (16 December 2025)
 
