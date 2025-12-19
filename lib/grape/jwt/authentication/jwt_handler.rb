@@ -122,7 +122,7 @@ module Grape
           inject_token_into_env(env, token)
 
           # Give the parsed token to the user defined block
-          # for futher verification. The user given block MUST return
+          # for further verification. The user given block MUST return
           # a positive result to allow the request to be further
           # processed, or a negative result to stop processing.
           raise AuthenticationError unless authenticator.call(token)
