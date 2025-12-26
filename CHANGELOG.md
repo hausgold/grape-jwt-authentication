@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Dropped Ruby 3.2 and Rails 7.1 support (#31)
 
 ### 3.4.0 (19 December 2025)
 

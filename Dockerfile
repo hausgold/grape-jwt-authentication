@@ -1,4 +1,4 @@
-FROM hausgold/ruby:3.2
+FROM hausgold/ruby:3.3
 LABEL org.opencontainers.image.authors="containers@hausgold.de"
 
 # Update system gem

@@ -18,8 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '3.3', '3.4']
-        rails: ['7.1', '7.2', '8.0', '8.1']
+        ruby: ['3.3', '3.4']
+        rails: ['7.2', '8.0', '8.1']
     env:
       BUNDLE_GEMFILE: 'gemfiles/rails_${{ matrix.rails }}.gemfile'
     steps:
@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '3.3', '3.4']
+        ruby: ['3.3', '3.4']
         grape: ['1', '2', '3']
     env:
       BUNDLE_GEMFILE: 'gemfiles/grape_${{ matrix.grape }}.gemfile'
