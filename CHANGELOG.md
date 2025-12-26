@@ -1,7 +1,11 @@
 ### next
 
-* Added Ruby 4.0 support (#32)
-* Dropped Ruby 3.2 and Rails 7.1 support (#31)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.5.0 (26 December 2025)
+
+* Added Ruby 4.0 support ([#32](https://github.com/hausgold/grape-jwt-authentication/pull/32))
+* Dropped Ruby 3.2 and Rails 7.1 support ([#31](https://github.com/hausgold/grape-jwt-authentication/pull/31))
 
 ### 3.4.0 (19 December 2025)
 
