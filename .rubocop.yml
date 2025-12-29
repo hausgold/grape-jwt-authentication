@@ -2,6 +2,10 @@ inherit_from:
   - https://potpourri.hausgold.de/config/rubocop.yml
   - https://potpourri.hausgold.de/config/rubocop-gem.yml
 
+inherit_mode:
+  merge:
+    - Exclude
+
 plugins:
   - rubocop-rspec
   - rubocop-rails
