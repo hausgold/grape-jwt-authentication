@@ -23,7 +23,13 @@ jobs:
     env:
       BUNDLE_GEMFILE: 'gemfiles/rails_${{ matrix.rails }}.gemfile'
     steps:
-      - uses: actions/checkout@v4
+      - name: Prepare the environment
+        uses: hausgold/actions/ci@v2
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
 
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1
@@ -31,14 +37,6 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
           rubygems: '3.6.9'
-
-      - name: Prepare the virtual environment
-        uses: hausgold/actions/ci@master
-        with:
-          clone_token: '${{ secrets.CLONE_TOKEN }}'
-          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
-          settings: '${{ github.repository }}'
-          target: ci/gem-test
 
       - name: Run the gem tests
         run: make test
@@ -58,7 +56,13 @@ jobs:
     env:
       BUNDLE_GEMFILE: 'gemfiles/grape_${{ matrix.grape }}.gemfile'
     steps:
-      - uses: actions/checkout@v4
+      - name: Prepare the environment
+        uses: hausgold/actions/ci@v2
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
 
       - name: Install the correct Ruby version
         uses: ruby/setup-ruby@v1
@@ -66,14 +70,6 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
           rubygems: '3.6.9'
-
-      - name: Prepare the virtual environment
-        uses: hausgold/actions/ci@master
-        with:
-          clone_token: '${{ secrets.CLONE_TOKEN }}'
-          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
-          settings: '${{ github.repository }}'
-          target: ci/gem-test
 
       - name: Run the gem tests
         run: make test

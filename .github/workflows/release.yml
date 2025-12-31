@@ -18,7 +18,13 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Prepare the environment
+        uses: hausgold/actions/ci@v2
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
 
       - name: Install Ruby 3.3
         uses: ruby/setup-ruby@v1
@@ -26,14 +32,6 @@ jobs:
           ruby-version: 3.3
           bundler-cache: true
           rubygems: '3.6.9'
-
-      - name: Prepare the virtual environment
-        uses: hausgold/actions/ci@master
-        with:
-          clone_token: '${{ secrets.CLONE_TOKEN }}'
-          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
-          settings: '${{ github.repository }}'
-          target: ci/gem-test
 
       - name: Switch to SSH remotes for the Git repository
         run: git-ssh-remotes

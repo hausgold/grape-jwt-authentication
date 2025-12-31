@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Migrated to hausgold/actions@v2 (#33)
 
 ### 3.5.0 (26 December 2025)
 
