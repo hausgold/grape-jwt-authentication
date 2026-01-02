@@ -13,7 +13,7 @@ concurrency:
 jobs:
   test-rails:
     name: 'Test the gem (Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }})'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     strategy:
       fail-fast: false
@@ -46,7 +46,7 @@ jobs:
 
   test-grape:
     name: 'Test the gem (Ruby ${{ matrix.ruby }}, Grape ${{ matrix.grape }})'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     strategy:
       fail-fast: false
