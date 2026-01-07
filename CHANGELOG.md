@@ -1,7 +1,11 @@
 ### next
 
-* Upgraded to Ubuntu 24.04 on Github Actions (#34)
-* Migrated to hausgold/actions@v2 (#33)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.6.0 (7 January 2026)
+
+* Upgraded to Ubuntu 24.04 on Github Actions ([#34](https://github.com/hausgold/grape-jwt-authentication/pull/34))
+* Migrated to hausgold/actions@v2 ([#33](https://github.com/hausgold/grape-jwt-authentication/pull/33))
 
 ### 3.5.0 (26 December 2025)
 
