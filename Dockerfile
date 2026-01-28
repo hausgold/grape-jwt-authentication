@@ -2,7 +2,7 @@ FROM hausgold/ruby:3.3
 LABEL org.opencontainers.image.authors="containers@hausgold.de"
 
 # Update system gem
-RUN gem update --system '3.6.9'
+RUN gem update --system '3.7.2'
 
 # Install system packages and the latest bundler
 RUN apt-get update -yqqq && \
@@ -11,7 +11,7 @@ RUN apt-get update -yqqq && \
     ca-certificates \
     bash-completion inotify-tools && \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && /usr/sbin/locale-gen && \
-  gem install bundler -v '~> 2.6.9' --no-document --no-prerelease
+  gem install bundler -v '~> 2.7.2' --no-document --no-prerelease
 
 # Add new web user
 RUN mkdir /app && \

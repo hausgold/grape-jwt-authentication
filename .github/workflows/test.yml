@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.3', '3.4', '4.0']
-        rails: ['7.2', '8.0', '8.1']
+        rails: ['8.0', '8.1']
     env:
       BUNDLE_GEMFILE: 'gemfiles/rails_${{ matrix.rails }}.gemfile'
     steps:
@@ -36,7 +36,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          rubygems: '3.6.9'
+          rubygems: '3.7.2'
 
       - name: Run the gem tests
         run: make test
@@ -69,7 +69,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          rubygems: '3.6.9'
+          rubygems: '3.7.2'
 
       - name: Run the gem tests
         run: make test
