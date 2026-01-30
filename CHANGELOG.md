@@ -1,7 +1,11 @@
 ### next
 
-* Dropped Grape 1.x support (#36)
-* Added a CI matrix for Rack 2.x and Rack 3.x (#36)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.9.0 (30 January 2026)
+
+* Dropped Grape 1.x support ([#36](https://github.com/hausgold/grape-jwt-authentication/pull/36))
+* Added a CI matrix for Rack 2.x and Rack 3.x ([#36](https://github.com/hausgold/grape-jwt-authentication/pull/36))
 
 ### 3.8.0 (28 January 2026)
 
