@@ -1,6 +1,7 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Dropped Grape 1.x support (#36)
+* Added a CI matrix for Rack 2.x and Rack 3.x (#36)
 
 ### 3.8.0 (28 January 2026)
 

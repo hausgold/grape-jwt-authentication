@@ -10,6 +10,7 @@ puts <<DESC
             Ruby: #{"#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"}
   Active Support: #{ActiveSupport.version}
            Grape: #{Gem.loaded_specs['grape'].version}
+            Rack: #{Gem.loaded_specs['rack'].version}
   --------------------------------------
 DESC
 puts

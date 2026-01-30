@@ -52,9 +52,42 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.3', '3.4', '4.0']
-        grape: ['1', '2', '3']
+        grape: ['2.4', '3.0']
     env:
       BUNDLE_GEMFILE: 'gemfiles/grape_${{ matrix.grape }}.gemfile'
+    steps:
+      - name: Prepare the environment
+        uses: hausgold/actions/ci@v2
+        with:
+          clone_token: '${{ secrets.CLONE_TOKEN }}'
+          settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
+          settings: '${{ github.repository }}'
+          target: ci/gem-test
+
+      - name: Install the correct Ruby version
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+          rubygems: '3.7.2'
+
+      - name: Run the gem tests
+        run: make test
+
+      - name: Upload the code coverage report
+        run: coverage
+
+  test-rack:
+    name: 'Test the gem (Ruby ${{ matrix.ruby }}, Rack ${{ matrix.rack }})'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['3.3', '3.4', '4.0']
+        rack: ['2', '3']
+    env:
+      BUNDLE_GEMFILE: 'gemfiles/rack_${{ matrix.rack }}.gemfile'
     steps:
       - name: Prepare the environment
         uses: hausgold/actions/ci@v2
