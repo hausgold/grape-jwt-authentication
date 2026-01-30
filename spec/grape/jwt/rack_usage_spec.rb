@@ -2,8 +2,15 @@
 
 require 'spec_helper'
 require 'rack'
-require 'rack/lobster'
 require 'rack/test'
+
+begin
+  require 'rack/lobster'
+  TestApp = Rack::Lobster
+rescue LoadError
+  require 'rackup/lobster'
+  TestApp = Rackup::Lobster
+end
 
 # rubocop:disable RSpec/DescribeClass -- because we test not a specific class
 RSpec.describe 'Rack usage' do
@@ -14,15 +21,14 @@ RSpec.describe 'Rack usage' do
   let(:valid_token) { 'eyJ0eXAiOiJKV1QifQ.eyJ0ZXN0Ijp0cnVlfQ.' }
 
   let(:app) do
-    app = Rack::Builder.new do
+    Rack::Builder.new do
       use Rack::ShowExceptions
       use Rack::Lint
       use Grape::Jwt::Authentication::JwtHandler
       map '/' do
-        run Rack::Lobster.new
+        run TestApp.new
       end
     end
-    app.run(app)
   end
 
   before do
