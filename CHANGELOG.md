@@ -1,7 +1,11 @@
 ### next
 
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.10.0 (18 February 2026)
+
 * Dropped 3rd-level gem dependencies which are not directly used
-  by this gem (#37)
+  by this gem ([#37](https://github.com/hausgold/grape-jwt-authentication/pull/37))
 
 ### 3.9.0 (30 January 2026)
 
