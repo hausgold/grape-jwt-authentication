@@ -1,6 +1,10 @@
 ### next
 
-* Corrected some RuboCop issues (#38)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.11.0 (16 March 2026)
+
+* Corrected some RuboCop issues ([#38](https://github.com/hausgold/grape-jwt-authentication/pull/38))
 
 ### 3.10.0 (18 February 2026)
 
