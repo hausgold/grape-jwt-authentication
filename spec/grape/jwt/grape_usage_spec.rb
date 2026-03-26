@@ -15,7 +15,6 @@ $custom_failed_auth_handler = proc do |_token, _app|
   [401, {}, ['Go away!']]
 end
 
-# rubocop:disable Style/OneClassPerFile -- because of the various usage specs
 module TestGlobalConfiguration
   class API < Grape::API
     version 'v1', using: :path
@@ -137,7 +136,6 @@ RSpec.shared_examples 'api' do
     end
   end
 end
-# rubocop:enable Style/OneClassPerFile
 
 # rubocop:disable RSpec/DescribeClass -- because we test not a specific class
 RSpec.describe 'Grape usage' do
