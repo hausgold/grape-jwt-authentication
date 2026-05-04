@@ -1,6 +1,10 @@
 ### next
 
-* Dropped Ruby 3.x, Rails <8.1, and Rack 2.x support (#40)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.13.0 (4 May 2026)
+
+* Dropped Ruby 3.x, Rails <8.1, and Rack 2.x support ([#40](https://github.com/hausgold/grape-jwt-authentication/pull/40))
 
 ### 3.12.0 (26 March 2026)
 
