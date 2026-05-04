@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Dropped Ruby 3.x, Rails <8.1, and Rack 2.x support (#40)
 
 ### 3.12.0 (26 March 2026)
 
