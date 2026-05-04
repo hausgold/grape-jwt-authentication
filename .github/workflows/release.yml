@@ -26,12 +26,12 @@ jobs:
           settings: '${{ github.repository }}'
           target: ci/gem-test
 
-      - name: Install Ruby 3.3
+      - name: Install Ruby 4.0
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 4.0
           bundler-cache: true
-          rubygems: '3.7.2'
+          rubygems: '4.0.11'
 
       - name: Switch to SSH remotes for the Git repository
         run: git-ssh-remotes

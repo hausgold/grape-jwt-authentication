@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'openssl'
-require 'pathname'
 
 root = Pathname.new(__dir__)
 

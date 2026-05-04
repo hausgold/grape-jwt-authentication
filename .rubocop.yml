@@ -17,8 +17,8 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   DisplayCopNames: true
-  TargetRubyVersion: 3.3
-  TargetRailsVersion: 8.0
+  TargetRubyVersion: 4.0
+  TargetRailsVersion: 8.1
   Exclude:
     - bin/**/*
     - vendor/**/*
