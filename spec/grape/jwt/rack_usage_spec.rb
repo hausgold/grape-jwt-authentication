@@ -62,7 +62,7 @@ RSpec.describe 'Rack usage' do
   it 'succeeds on a fine JSON Web Token' do
     header 'Authorization', "Bearer #{valid_token}"
     get '/'
-    expect(last_response.body).to match(/Lobstericious!/)
+    expect(last_response.body).to include('Lobstericious!')
   end
 end
 # rubocop:enable RSpec/DescribeClass
