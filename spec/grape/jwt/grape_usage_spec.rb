@@ -137,7 +137,8 @@ RSpec.shared_examples 'api' do
   end
 end
 
-# rubocop:disable RSpec/DescribeClass -- because we test not a specific class
+# rubocop:disable-next RSpec/DescribeClass -- because we test not a specific
+#   class
 RSpec.describe 'Grape usage' do
   include Rack::Test::Methods
 
@@ -163,5 +164,4 @@ RSpec.describe 'Grape usage' do
     it_behaves_like 'api'
   end
 end
-# rubocop:enable RSpec/DescribeClass
 # rubocop:enable Style/GlobalVars

@@ -2,7 +2,8 @@
 
 require 'spec_helper'
 
-# rubocop:disable RSpec/DescribeClass -- because there is no class/module here
+# rubocop:disable-next RSpec/DescribeClass -- because there is no class/module
+#   here
 RSpec.describe 'Dependency pass-through' do
   let(:described_class) { Grape::Jwt::Authentication }
 
@@ -50,4 +51,3 @@ RSpec.describe 'Dependency pass-through' do
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass
