@@ -12,7 +12,8 @@ rescue LoadError
   TestApp = Rackup::Lobster
 end
 
-# rubocop:disable RSpec/DescribeClass -- because we test not a specific class
+# rubocop:disable-next RSpec/DescribeClass -- because we test not a specific
+#   class
 RSpec.describe 'Rack usage' do
   include Rack::Test::Methods
 
@@ -65,4 +66,3 @@ RSpec.describe 'Rack usage' do
     expect(last_response.body).to include('Lobstericious!')
   end
 end
-# rubocop:enable RSpec/DescribeClass
