@@ -1,6 +1,10 @@
 ### next
 
-* Upgraded the keyless gem and with it the http gem to 6.0 (#44)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.16.0 (16 September 2026)
+
+* Upgraded the keyless gem and with it the http gem to 6.0 ([#44](https://github.com/hausgold/grape-jwt-authentication/pull/44))
 
 ### 3.15.0 (27 August 2026)
 
