@@ -1,6 +1,6 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Upgraded the keyless gem and with it the http gem to 6.0 (#44)
 
 ### 3.15.0 (27 August 2026)
 
