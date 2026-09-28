@@ -1,6 +1,10 @@
 ### next
 
-* Upgraded the simplecov gem to 1.3 (#45)
+* TODO: Replace this bullet point with an actual description of a change.
+
+### 3.17.0 (28 September 2026)
+
+* Upgraded the simplecov gem to 1.3 ([#45](https://github.com/hausgold/grape-jwt-authentication/pull/45))
 
 ### 3.16.0 (16 September 2026)
 
