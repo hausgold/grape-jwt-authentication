@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-require 'simplecov-html'
-require 'simplecov_json_formatter'
+# Fail the run on any deprecated SimpleCov spelling instead of just
+# warning, so an old configuration cannot creep back in unnoticed.
+SimpleCov.deprecations :raise
 
-SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
-  [
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::JSONFormatter
-  ]
-)
-
-SimpleCov.start 'test_frameworks' do
-  add_filter '/vendor/bundle/'
-end
+# Shared SimpleCov configuration only, the coverage tracking itself is
+# started from the spec helper.
+SimpleCov.formats :html
