@@ -1,6 +1,7 @@
 ### next
 
-* TODO: Replace this bullet point with an actual description of a change.
+* Added Grape 4.0 support and loosed up the version requirement to
+  `>= 2.4, < 5.0` ([#46](https://github.com/hausgold/grape-jwt-authentication/pull/46))
 
 ### 3.17.0 (28 September 2026)
 

@@ -13,3 +13,7 @@ end
 appraise 'grape-3.0' do
   gem 'grape', '~> 3.0.0'
 end
+
+appraise 'grape-4.0' do
+  gem 'grape', '~> 4.0.0'
+end

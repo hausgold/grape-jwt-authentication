@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 4.0'
 
   spec.add_dependency 'activesupport', '>= 8.1'
-  spec.add_dependency 'grape', '>= 2.4', '< 4.0'
+  spec.add_dependency 'grape', '>= 2.4', '< 5.0'
   spec.add_dependency 'jwt', '>= 2.6'
   spec.add_dependency 'keyless', '~> 2.12'
   spec.add_dependency 'logger', '~> 1.7'
